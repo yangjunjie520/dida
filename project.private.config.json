@@ -1,0 +1,42 @@
+{
+  "setting": {},
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "name": "ofd",
+          "pathName": "pages/ofd/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "login",
+          "pathName": "pages/login/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/waybill/index",
+          "pathName": "pages/waybill/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/financial/index",
+          "pathName": "pages/financial/index",
+          "query": "",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

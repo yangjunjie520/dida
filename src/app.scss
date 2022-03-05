@@ -1,0 +1,8 @@
+@import "./theme/variables.scss";
+@import "~taro-ui/dist/style/index.scss";
+@import "./theme/global.scss";
+@import "./theme/toast.scss";
+
+.tabbar-style {
+  box-shadow: 0px -1px 1px 0px rgba(228, 230, 239, 0.5);
+}

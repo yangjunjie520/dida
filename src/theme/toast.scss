@@ -1,0 +1,17 @@
+// taro-ui showToast
+.at-toast .toast-body {
+  min-width: 100px;
+  background-color: rgba(0,0,0,0.7);
+  .toast-body-content {
+    .toast-body-content__img {
+      .toast-body-content__img-item {
+        width: 32px;
+        height: 32px;
+      }
+    }
+   .toast-body-content__info {
+     font-size: 12px;
+   }
+
+  }
+}

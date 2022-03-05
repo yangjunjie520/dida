@@ -1,0 +1,31 @@
+$hd: 1; // 基本单位
+
+/* The Color of O2Team Brand */
+$color-brand: #062cff;
+$color-brand-light: #4461ff;
+$color-brand-dark: #0523cc;
+
+/* Color */
+$color-success: #009677;
+$color-error: #FF0606;
+$color-warning: #FF5300;
+$color-info: #062CFF;
+
+/* Font */
+$font-size-xs: 6px * $hd; // 非常用字号，用于标签
+$font-size-sm: 7px * $hd; // 用于辅助信息
+$font-size-base: 8px * $hd; // 常用字号
+$font-size-lg: 10px * $hd; // 常规标题
+$font-size-xl: 18px * $hd; // 大标题
+$font-size-xxl: 20px * $hd; // 用于大号的数字
+
+/* Button */
+$at-button-height: 48px;
+$at-button-height-sm: 32px;
+$at-button-color: $color-brand;
+$at-button-border-color-primary: $color-brand;
+$at-button-border-color-secondary: $color-brand;
+$at-button-bg: $at-button-color;
+
+// switch
+$at-switch-title-size: 14px !default;
