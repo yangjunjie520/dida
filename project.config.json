@@ -9,7 +9,7 @@
         "enhance": true,
         "postcss": false,
         "preloadBackgroundData": false,
-        "minified": false,
+        "minified": true,
         "newFeature": true,
         "coverView": true,
         "nodeModules": false,
@@ -30,7 +30,6 @@
             "disablePlugins": [],
             "outputPath": ""
         },
-        "enableEngineNative": false,
         "useIsolateContext": true,
         "userConfirmedBundleSwitch": false,
         "packNpmManually": false,
@@ -39,12 +38,14 @@
         "disableUseStrict": false,
         "minifyWXML": true,
         "showES6CompileOption": false,
-        "useCompilerPlugins": false
+        "useCompilerPlugins": false,
+        "ignoreUploadUnusedFiles": true
     },
     "compileType": "miniprogram",
     "simulatorType": "qywx_simulator_plugin",
     "simulatorPluginLibVersion": {
         "qywx_simulator_plugin": "2.4.0"
     },
+    "lazyCodeLoading": "requiredComponents",
     "condition": {}
 }

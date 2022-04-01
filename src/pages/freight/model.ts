@@ -1,82 +1,65 @@
-import { Reducer } from 'redux'
-import { Model } from 'dva'
-import { Loading } from '@/models/connect'
-import { THREE_WEEKS_AGO } from '@/utils/handleTime'
-import { } from './api'
+import { Reducer } from "redux";
+import { Model } from "dva";
+import { OrderList } from "./api";
+import Taro from "@tarojs/taro";
 
 interface StateType {
-  overview: Record<string, unknown>
-  countryList: Record<string, unknown>[]
+  params: Record<string, unknown>;
 }
 export interface ConnectState {
-  loading: Loading
-  waybill: StateType
+  waybill: StateType;
 }
 
 interface ModelType {
-  namespace: string
-  state: StateType
-  effects: {}
+  namespace: string;
+  state: StateType;
+  effects: {};
   reducers: {
-    save: Reducer
-  }
+    save: Reducer;
+  };
 }
 
+const user = Taro.getStorageSync("user");
+
 const model: Model & ModelType = {
-  namespace: 'waybill',
+  namespace: "freight",
   state: {
-   
+    params: {
+      userId: user.userId,
+      openid: user.openid,
+      deliveryId: "",
+    },
+    list: [],
   },
   effects: {
-    watchFilterChanges: [
-      function*({ take, put, select }) {
-        while (true) {
-          yield take('saveFilterParams')
-          yield put({ type: 'getDefault' })
-        }
-      },
-      { type: 'watcher' },
-    ],
-
-    *getDefault({}, { put, select }) {
-      let params = yield select(state => state.waybill.filterParams)
-      params = {
-        ...params,
-        orderTypes: params.orderTypes?.[0] === 'ALL' ? [] : params.orderTypes,
-        clientCodes: params.clientCodes?.[0] === 'ALL' ? [] : params.clientCodes,
-        destinationCountry: params.destinationCountry,
-        ocCode: params.ocCode === 'ALL' ? '' : params.ocCode,
+    *orderList({}, { put, select }) {
+      let freight = yield select((state) => state.freight);
+      const res = yield OrderList(freight.params);
+      if (res) {
+        yield put({
+          type: "setList",
+          payload: res.rows,
+        });
       }
-      yield put({
-        type: 'waybillList',
-        payload: {
-          ...params,
-          currentPage: 1,
-        },
-      })
-      let { showCount, ...otherParams } = params
-      yield put({
-        type: 'overview',
-        payload: otherParams,
-      })
-    },
-    *overview({ payload }, { call, put }) {
-     
-    },
-    *waybillList({ payload }, { call, put, select }) {
-    
-
-   
     },
   },
   reducers: {
     save(state, { payload }) {
-      return { ...state, ...payload }
+      return {
+        ...state,
+        params: {
+          ...state.params,
+          ...payload,
+        },
+      };
     },
-    saveFilterParams(state, { payload }) {
-      return { ...state, filterParams: { ...state.filterParams, ...payload }, currentPage: 1 }
+    setList(state, { payload }) {
+      return {
+        ...state,
+        list: payload,
+      };
     },
   },
-}
+};
 
-export default model
+export default model;

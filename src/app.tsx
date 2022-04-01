@@ -3,6 +3,7 @@ import { Provider } from "react-redux";
 import dva from "./utils/dva";
 import models from "./models";
 import Taro from "@tarojs/taro";
+import { login } from "./pages/login/api";
 
 import "./app.scss";
 
@@ -21,25 +22,20 @@ Taro.dvaApp = dvaApp;
 
 class App extends React.Component {
   onLaunch() {
-    // 展示本地存储能力
-    const logs = wx.getStorageSync("logs") || [];
-    logs.unshift(Date.now());
-    wx.setStorageSync("logs", logs);
+    //
 
     // 登录
-    wx.login({
-      success: function(res) {
-        console.log("进入login函数", res);
+    Taro.login({
+      success: function (res) {
+        console.log("code为：", res.code);
         if (res.code) {
-          wx.request({
-            // url: "http://localhost:8080/wx/login",
-            url: "http://159.75.52.36:8080/wx/login",
+          Taro.request({
+            url: "http://159.75.52.36/prod-api/jsapi/login",
             data: {
               code: res.code,
               wxUserVo: {
                 gender: 0,
                 parentOpenid: "",
-                sign: "316419CD5A933DD552F21A978190C098",
                 userId: 1817,
                 smallSource: 0,
               },
@@ -48,40 +44,34 @@ class App extends React.Component {
             header: {
               "content-type": "application/json",
             },
-            success: function(res) {
-              console.log("res==", res);
-              if (res.code) {
-                var openid = res.data.openid;
-                wx.getUserInfo({
-                  success: (res) => {
-                    // 保存用户信息到服务端
-                    wx.request({
-                      // url: "http://localhost:8080/wx/getUserInfo",
-                      url: "http://159.75.52.36:8080/wx/getUserInfo",
-                      data: {
-                        userInfo: res.userInfo,
-                        openid: openid,
-                      },
-                      method: "POST",
-                      header: {
-                        "content-type": "application/json",
-                      },
-                      success: function(res) {
-                        console.log("success");
-                      },
-                      fail: function(error) {
-                        console.log(error);
-                      },
-                    });
-                  },
-                });
-              } else {
-                Taro.reLaunch({
-                  url: "/pages/login/index",
-                });
-              }
+            success: function (res) {
+              var openid = res.data.openid;
+              Taro.getUserInfo({
+                success: (res) => {
+                  // 保存用户信息到服务端
+                  Taro.request({
+                    // url: "http://localhost:8080/wx/getUserInfo",
+                    url: "http://159.75.52.36/prod-api/jsapi/getUserInfo",
+                    data: {
+                      userInfo: res.userInfo,
+                      openid: openid,
+                    },
+                    method: "POST",
+                    header: {
+                      "content-type": "application/json",
+                    },
+                    success: function (res) {
+                      console.log("success----", res.data.data);
+                      Taro.setStorageSync("user", res.data.data);
+                    },
+                    fail: function (error) {
+                      console.log(error);
+                    },
+                  });
+                },
+              });
             },
-            fail: function(error) {
+            fail: function (error) {
               console.log(error);
             },
           });
@@ -99,11 +89,11 @@ class App extends React.Component {
     // console.log(Taro.getMenuButtonBoundingClientRect());
   }
 
-  componentDidShow() {}
+  componentDidShow() { }
 
-  componentDidHide() {}
+  componentDidHide() { }
 
-  componentDidCatchError() {}
+  componentDidCatchError() { }
 
   render() {
     return <Provider store={store}>{this.props.children}</Provider>;

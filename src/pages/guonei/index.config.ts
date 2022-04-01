@@ -1,5 +1,5 @@
 export default {
-    navigationBarTitleText: '国内货运',
+    navigationBarTitleText: '国内物流',
     // navigationStyle: 'custom',
     navigationBarTextStyle: 'black'
   }

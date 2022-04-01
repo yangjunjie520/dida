@@ -23,10 +23,10 @@ export default {
       root: "pages/login",
       pages: ["index"],
     },
-    // {
-    //   root: "pages/freight",
-    //   pages: ["details/index", "edit/index", "suc/index", "clear/index"],
-    // },
+    {
+      root: "pages/info",
+      pages: ["details/index", "edit/index", "suc/index", "clear/index"],
+    },
     {
       root: "pages/adr/",
       pages: ["bill/index", "address/index", "address/add/index"],
@@ -78,4 +78,10 @@ export default {
     navigationBarTitleText: "Prism",
     navigationBarTextStyle: "black",
   },
+  quickMenu: {
+    share: true,
+    favorite: false,
+    sendToDesktop: false,
+  },
+  lazyCodeLoading: "requiredComponents",
 };

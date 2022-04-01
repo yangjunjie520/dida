@@ -1,11 +1,23 @@
-import { styled } from 'linaria/react'
-import { View } from '@tarojs/components'
+import { styled } from "linaria/react";
+import { View } from "@tarojs/components";
 
 export const StyledOverview = styled(View)`
   .scrollview {
     height: 100vh;
   }
-
+  .sao {
+    background: #fff;
+    margin-left: 32rpx;
+    padding: 16rpx 0;
+    width: 120rpx;
+    border-radius: 20rpx;
+    text-align: center;
+    margin-top: 200rpx;
+  }
+  .sao-text {
+    color: #ff7201;
+    font-size: 28rpx;
+  }
   .page {
     z-index: 1;
     position: relative;
@@ -322,7 +334,7 @@ export const StyledOverview = styled(View)`
     height: 310rpx;
     border-radius: 40rpx;
     overflow: hidden;
-    background: #FFFFFF;
+    background: #ffffff;
     border-radius: 40rpx;
     margin-top: 30rpx;
     width: 702rpx;
@@ -346,14 +358,14 @@ export const StyledOverview = styled(View)`
     height: 120rpx;
     border-radius: 20rpx;
     overflow: hidden;
-  
+
     display: flex;
     flex-direction: column;
   }
   .box3 {
     z-index: 297;
     height: 120rpx;
- 
+
     width: 120rpx;
     position: absolute;
     left: 0rpx;
@@ -437,7 +449,7 @@ export const StyledOverview = styled(View)`
   .box4 {
     z-index: 305;
     height: 120rpx;
-  
+
     width: 120rpx;
     display: flex;
     flex-direction: column;
@@ -701,7 +713,7 @@ export const StyledOverview = styled(View)`
   .box8 {
     z-index: 310;
     height: 48rpx;
- 
+
     align-self: flex-start;
     width: 84rpx;
     justify-content: flex-end;
@@ -733,7 +745,7 @@ export const StyledOverview = styled(View)`
     z-index: 322;
     width: 142rpx;
     height: 2rpx;
- 
+
     align-self: flex-end;
     display: flex;
     flex-direction: column;
@@ -775,7 +787,7 @@ export const StyledOverview = styled(View)`
     z-index: 4;
     height: 566rpx;
     overflow: hidden;
-    background-image: url('../../static/images/home/banner.png');
+    background-image: url("../../static/images/home/banner.png");
     background-repeat: no-repeat;
     background-size: 750rpx 566rpx;
     width: 750rpx;
@@ -1339,10 +1351,25 @@ export const StyledOverview = styled(View)`
     width: 94rpx;
     height: 114rpx;
   }
-`
+  .tipsView{
+    background-color:rgba(239, 239, 242, 1);
+    padding: 12rpx 20rpx 12rpx 20rpx;
+    width: 90%
+    border-radius: 10rpx;
+  }
+  .tipsIcon{
+    width:20rpx;
+    height:20rpx
+  }
+  .tipsText{
+    margin-left:14rpx
+    font-size: 24rpx;
+    line-height: 24rpx;
+  }
+`;
 
 export const DialogView = styled.view<{ height: string }>`
   .at-float-layout__container {
-    height: ${props => props.height || 200}px;
+    height: ${(props) => props.height || 200}px;
   }
-`
+`;

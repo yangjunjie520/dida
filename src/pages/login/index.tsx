@@ -1,19 +1,12 @@
-import { ConnectState as FilterConnectState } from "@/models/filter";
-import {
-  Text,
-  View,
-  Image,
-  ScrollView,
-  Button,
-  Input,
-} from "@tarojs/components";
+import { Text, View, Image } from "@tarojs/components";
 import Taro from "@tarojs/taro";
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { AtToast, AtIcon, AtInput } from "taro-ui";
+import { AtToast, AtIcon, AtInput, AtButton } from "taro-ui";
 
 import { StyledOverView } from "./style";
 import Icon_dida from "../../static/images/icon_dida.png";
+import { login } from "./api";
 
 const { safeArea } = Taro.getSystemInfoSync();
 
@@ -22,30 +15,21 @@ const Edit = (props) => {
 
   const { overView, dispatch } = props;
 
-  useEffect(() => {
-    // dispatch({ type: 'waybill/getDefault' })
-    // // 监听时区变化
-    // Taro.eventCenter.on('timeZoneOnChange', arg => {
-    //   dispatch({ type: 'waybill/getDefault' })
-    // })
-    // Taro.showShareMenu({
-    //   withShareTicket: true,
-    // })
-  }, [dispatch]);
-
-  const getUserInfo = (e) => {
-    Taro.getUserInfo({
-      lang: "zh_CN",
-      withCredentials: true,
-    }).then((res) => {
-      var userInfo = res.userInfo;
-      var nickName = userInfo.nickName;
-      var avatarUrl = userInfo.avatarUrl;
-      var gender = userInfo.gender; //性别 0：未知、1：男、2：女
-      var province = userInfo.province;
-      var city = userInfo.city;
-      var country = userInfo.country;
-      console.log(res);
+  const getUserProfile = (e) => {
+    // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认
+    // 开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
+    Taro.getUserProfile({
+      desc: "用于完善会员资料", // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+      success: (res) => {
+        console.log(res);
+        const { signature, userInfo } = res;
+        login({
+          code: signature,
+          wxUserVo: userInfo,
+        }).then((res) => {
+          console.log(res);
+        });
+      },
     });
   };
   return (
@@ -59,7 +43,7 @@ const Edit = (props) => {
         <Image src={Icon_dida} className="icon2"></Image>
       </View> */}
         </View>
-        <View className="layer5">
+        <View className="layer5" onClick={getUserProfile}>
           {/* <View className="group2">
             <Image
               src="https://lanhu.oss-cn-beijing.aliyuncs.com/SketchPng0cfa5377c56f14a0806890ce8cf618244b290a8e5ab331c9e4ae1c3c00d5824a"
@@ -67,13 +51,14 @@ const Edit = (props) => {
             ></Image>
             
           </View> */}
-          <Button
+          {/* <Button
             className="word1"
             openType="getUserInfo"
             onGetUserInfo={getUserInfo}
           >
             微信账号快捷登录
-          </Button>
+          </Button> */}
+          <Text className="word1">微信账号快捷登录</Text>
         </View>
         <View className="layer6">
           <Text lines="1" className="word2">

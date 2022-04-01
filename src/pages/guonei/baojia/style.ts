@@ -48,13 +48,13 @@ export const StyledOverView = styled(View)`
     border-radius: 38rpx;
     border: 1px solid rgba(238, 238, 238, 1);
     background-color: rgba(249, 249, 249, 1);
-   
+
     font-size: 28rpx;
     font-family: PingFangSC-Regular, PingFang SC;
     font-weight: 400;
     color: #cccccc;
     /* width: 646rpx; */
-  
+
     /* padding-right: 40rpx; */
     /* display: flex;
     align-items: center;
@@ -76,7 +76,7 @@ export const StyledOverView = styled(View)`
     height: 40rpx;
     display: block;
     overflow-wrap: break-word;
-    color: #FFFFFF;
+    color: #ffffff;
     font-size: 30rpx;
     font-family: PingFangSC-Regular;
     white-space: nowrap;
@@ -101,12 +101,12 @@ export const StyledOverView = styled(View)`
   }
   .main7 {
     z-index: auto;
-    width: 200rpx;
+    width: 500rpx;
     height: 56rpx;
     flex-direction: row;
     display: flex;
-    justify-content: space-between;
-    margin: 20rpx 0 0 430rpx;
+    justify-content: flex-end;
+    margin: 20rpx 0 0 130rpx;
   }
   .word3 {
     z-index: 8;
@@ -124,7 +124,7 @@ export const StyledOverView = styled(View)`
   }
   .txt1 {
     z-index: 11;
-    width: 108rpx;
+
     height: 56rpx;
     display: block;
     overflow-wrap: break-word;

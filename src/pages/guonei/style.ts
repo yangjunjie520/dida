@@ -376,6 +376,7 @@ export const StyledOverView = styled(View)`
     font-weight: 400;
     color: #bbbbbb;
     line-height: 40rpx;
+    /* text-align: right; */
   }
   .opt {
     flex: 1;
@@ -746,7 +747,7 @@ export const StyledOverView = styled(View)`
     border-radius: 100%;
     margin-top: -4rpx;
   }
-  .zh-sw{
+  .zh-sw {
     position: absolute;
     position: absolute;
     z-index: 99;

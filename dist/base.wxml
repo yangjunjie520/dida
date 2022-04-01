@@ -81,6 +81,22 @@
   </label>
 </template>
 
+<template name="tmpl_0_picker-view">
+  <picker-view value="{{i.value}}" indicator-style="{{i.indicatorStyle}}" indicator-class="{{i.indicatorClass}}" mask-style="{{i.maskStyle}}" mask-class="{{i.maskClass}}" bindchange="eh" name="{{i.name}}" bindpickstart="eh" bindpickend="eh" style="{{i.st}}" class="{{i.cl}}" bindtap="eh"  id="{{i.uid}}">
+    <block wx:for="{{i.cn}}" wx:key="uid">
+      <template is="{{xs.e(cid+1)}}" data="{{i:item,l:l}}" />
+    </block>
+  </picker-view>
+</template>
+
+<template name="tmpl_0_picker-view-column">
+  <picker-view-column name="{{i.name}}" style="{{i.st}}" class="{{i.cl}}" bindtap="eh"  id="{{i.uid}}">
+    <block wx:for="{{i.cn}}" wx:key="uid">
+      <template is="{{xs.e(cid+1)}}" data="{{i:item,l:l}}" />
+    </block>
+  </picker-view-column>
+</template>
+
 <template name="tmpl_0_radio">
   <radio value="{{i.value}}" checked="{{xs.b(i.checked,false)}}" disabled="{{i.disabled}}" color="{{xs.b(i.color,'#09BB07')}}" name="{{i.name}}" style="{{i.st}}" class="{{i.cl}}" bindtap="eh"  id="{{i.uid}}">
     <block wx:for="{{i.cn}}" wx:key="uid">

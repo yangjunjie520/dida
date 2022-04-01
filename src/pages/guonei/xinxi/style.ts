@@ -109,6 +109,7 @@ export const StyledOverView = styled(View)`
     line-height: 44rpx;
     text-align: left;
     text-indent: 80rpx;
+    padding: 0 24rpx;
   }
   .outer2 {
     z-index: auto;
@@ -193,7 +194,7 @@ export const StyledOverView = styled(View)`
   }
   .word3 {
     z-index: 88;
-    width: 56rpx;
+    /* width: 56rpx; */
     height: 44rpx;
     display: block;
     overflow-wrap: break-word;
@@ -468,9 +469,10 @@ export const StyledOverView = styled(View)`
     width: 702rpx;
     justify-content: center;
     align-items: flex-end;
-    padding-right: 18rpx;
     display: flex;
     flex-direction: column;
+    padding: 0;
+    align-items: center;
   }
   .wrap2 {
     z-index: auto;
@@ -832,6 +834,7 @@ export const StyledOverView = styled(View)`
     line-height: 40rpx;
     text-align: left;
     padding: 20rpx;
+    width: 608rpx;
   }
   .bd6 {
     z-index: auto;
