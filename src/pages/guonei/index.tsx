@@ -6,6 +6,8 @@ import {
   Button,
   Input,
   Switch,
+  Radio,
+  Icon
 } from "@tarojs/components";
 import Taro, { useRouter } from "@tarojs/taro";
 import React, { useEffect, useState } from "react";
@@ -27,6 +29,8 @@ const Index = (props) => {
 
   const isId = router.params.deliveryId
   const [current, setCurrent] = useState(0);
+  const [xieyi, setXieyi] = useState(true)
+
   const setCurrentSwiper = (current) => {
     setCurrent(current);
   };
@@ -53,31 +57,31 @@ const Index = (props) => {
       });
       return false;
     }
-    dispatch({ type: "order/payOrder", isId });
-    // const res = await ApiPays({
-    //   openid: openid,
-    //   totalFee: 0.01,
-    // });
+    // dispatch({ type: "order/payOrder", isId });
+    const res = await ApiPays({
+      openid: openid,
+      totalFee: 0.01,
+    });
 
-    // Taro.requestPayment({
-    //   ...res.message,
-    //   success: function (r) {
-    //     PaySearch({
-    //       outTradeNo: res?.message?.outTradeNo,
-    //     })
-    //       .then((res) => {
-    //         if (res) {
-    //           dispatch({ type: "order/payOrder" });
-    //         }
-    //       })
-    //       .catch((err) => {
-    //         console.log(err);
-    //       });
-    //   },
-    //   fail: function (err) {
-    //     console.log("支付失败---", res);
-    //   },
-    // });
+    Taro.requestPayment({
+      ...res.message,
+      success: function (r) {
+        PaySearch({
+          outTradeNo: res?.message?.outTradeNo,
+        })
+          .then((res) => {
+            if (res) {
+              dispatch({ type: "order/payOrder" });
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      },
+      fail: function (err) {
+        console.log("支付失败---", res);
+      },
+    });
   };
 
   return (
@@ -121,19 +125,21 @@ const Index = (props) => {
 
         <View className="layer3">
           <View className="layer4">
-            {/* <View className="item">
+            <View className="item">
               <View className="group1-0">
                 <View className="mod2-0">
                   <Text className="input">期望上门时间</Text>
                   <View className="opt">
-                    <Text className="blod">今天 2小时内</Text>
+                    <Text className="blod" style={{
+                      textAlign: 'right'
+                    }}>今天 2小时内</Text>
                     <Image src={Jiantou} className="jiantou"></Image>
                   </View>
                 </View>
               </View>
             </View>
 
-            <View className="item">
+            {/* <View className="item">
               <View className="group1-0">
                 <View className="mod2-0">
                   <Text className="input">预计送达时间</Text>
@@ -164,7 +170,9 @@ const Index = (props) => {
                   </View>
 
                   <View className="opt">
-                    <Text className="input">
+                    <Text className="input" style={{
+                      textAlign: 'right'
+                    }}>
                       {" "}
                       {deliveryType
                         ? deliveryType === 6
@@ -195,7 +203,7 @@ const Index = (props) => {
               </View>
             }
 
-            <View className="item">
+            {/* <View className="item">
               <View className="group1-0">
                 <View className="mod2-0">
                   <Text className="input">付款方式</Text>
@@ -205,7 +213,7 @@ const Index = (props) => {
                   </View>
                 </View>
               </View>
-            </View>
+            </View> */}
           </View>
         </View>
 
@@ -248,7 +256,9 @@ const Index = (props) => {
                 <View className="mod2-0">
                   <Text className="input">增值服务</Text>
                   <View className="opt">
-                    <Text className="input">
+                    <Text className="input" style={{
+                      textAlign: 'right'
+                    }}>
                       {collectionMoney
                         ? `￥${collectionMoney}`
                         : "包装服务/代收货款"}
@@ -258,6 +268,27 @@ const Index = (props) => {
                 </View>
               </View>
             </View>
+            {
+              isId && <View
+                className="item"
+
+              >
+                <View className="group1-0">
+                  <View className="mod2-0">
+                    <Text className="input">运单号</Text>
+                    <View className="opt">
+                      <Text className="input" style={{
+                        textAlign: 'right'
+                      }}>
+                        {isId}
+                      </Text>
+
+                    </View>
+                  </View>
+                </View>
+              </View>
+            }
+
           </View>
         </View>
 
@@ -285,6 +316,19 @@ const Index = (props) => {
             </Text>
           </View>
         }
+        <View className="check">
+
+          <Radio className='radio-list__radio' style={{
+            transform: 'scale(0.6)', display: 'flex',
+            flex: 1,
+            marginLeft: '-80rpx',
+          }} color='#FF7464'
+
+            onClick={(e) => setXieyi(!xieyi)}
+            checked={xieyi}
+          ><Text>阅读并同意《货运服务协议》</Text></Radio>
+
+        </View>
 
         <View className="foot">
           <View
@@ -299,18 +343,19 @@ const Index = (props) => {
             <View className="section4">
               <View className="layer7">
                 <View className="layer8">
-                  <Text className="info3">预估费用</Text>
+                  {/* <Text className="info3">预估费用</Text> */}
                   <View className="block9">
                     <Text className="word14">¥</Text>
                     <Text className="info4">23</Text>
                   </View>
+                  <View className="fangshi"><Text className="fangshi-text">寄付现结</Text></View>
                 </View>
                 <View className="layer9">
                   {/* <Image
                     src="https://lanhu.oss-cn-beijing.aliyuncs.com/SketchPng7a499fe45eed64ab25c974fecf15c70d576d564de3843223ef9dc9c37df903e5"
                     className="label7"
                   ></Image> */}
-                  <Text className="word15">阅读并同意《货运服务协议》</Text>
+                  <Text className="word15">费用以小哥核算为准</Text>
                 </View>
               </View>
               <Text
@@ -336,6 +381,7 @@ const Index = (props) => {
         title={'重货上楼'}
         text={`零担产品：当单票货物重量50KG(含)以下，嘀嗒\n物流提供免费上楼服务。当单票货物重量50KG\n以上，且货物最长边小于2米(含)，提供收费送货\n上楼服务\n注:以.上仅供参考，具体以当地嘀嗒销售人员报\n价为准`}
       ></Modals> */}
+
     </>
   );
 };

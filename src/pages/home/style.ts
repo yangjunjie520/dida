@@ -8,11 +8,22 @@ export const StyledOverview = styled(View)`
   .sao {
     background: #fff;
     margin-left: 32rpx;
-    padding: 16rpx 0;
-    width: 120rpx;
+
+    width: 174rpx;
     border-radius: 20rpx;
     text-align: center;
     margin-top: 200rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
+    height: 56rpx;
+    background: #FFFFFF;
+    border-radius: 30rpx;
+  }
+  .sao-img{
+    width:26rpx;
+    height: 26rpx;  
   }
   .sao-text {
     color: #ff7201;
@@ -127,7 +138,7 @@ export const StyledOverview = styled(View)`
     line-height: 48rpx;
     text-align: left;
     align-self: flex-start;
-    margin: 18rpx 0 0 8rpx;
+   
   }
   .word2 {
     z-index: 155;
@@ -1051,6 +1062,7 @@ export const StyledOverview = styled(View)`
     flex-direction: column;
     padding: 0 0 24rpx 24rpx;
     border-radius: 20rpx;
+   
   }
   .bg1 {
     width: 138rpx;
@@ -1351,11 +1363,25 @@ export const StyledOverview = styled(View)`
     width: 94rpx;
     height: 114rpx;
   }
+  
+  .tipsIcon{
+    width:20rpx;
+    height:20rpx
+  }
+  .tipsText{
+    margin-left:14rpx
+    font-size: 24rpx;
+    line-height: 24rpx;
+  }
+
   .tipsView{
     background-color:rgba(239, 239, 242, 1);
     padding: 12rpx 20rpx 12rpx 20rpx;
-    width: 90%
+    width: 90%;
     border-radius: 10rpx;
+    position: absolute;
+    top: 984rpx;
+    z-index: 999;
   }
   .tipsIcon{
     width:20rpx;
@@ -1366,6 +1392,148 @@ export const StyledOverview = styled(View)`
     font-size: 24rpx;
     line-height: 24rpx;
   }
+  .daikaifang{
+    width: 90rpx;
+    height: 34rpx;
+    background: rgba(216, 216, 216, 0.32);
+    border-radius: 24rpx 24rpx 24rpx 0;
+    border: 2rpx solid rgba(184, 184, 184, 0.5);
+    font-size: 22rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #B8B8B8;
+    padding: 0 12rpx;
+  }
+  .kd{
+    margin: 18rpx 0 0 8rpx;
+    display: flex;
+    align-items: center;
+  }
+  .fuwu{
+    /* width: 702rpx; */
+    height: 110rpx;
+    background: #FFFFFF;
+    border-radius: 20rpx;
+    /* padding: 0 20rpx; */
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 1084rpx;
+    z-index: 999;
+    padding: 0 20rpx;
+    width: 90%;
+    justify-content: space-between;
+    
+    .linian{
+      width: 50rpx;
+      height: 50rpx;
+      /* margin-left: 20rpx; */
+    }
+
+    .fuwu-box{
+      width: 604rpx;
+      height: 70rpx;
+      background: #F7F7F7;
+      border-radius: 10rpx;
+     
+      display: flex;
+      align-items: center;
+
+      justify-content: space-between;
+    }
+
+    .fuwu-item{
+      flex: 1;
+      display: flex;
+      align-items: center;
+      height: 32rpx;
+      justify-content: center;
+      border-right: 2rpx solid #DBDBDB;
+    }
+    .fuwu-item:last-child{
+      border: none;
+    }
+
+    .fuwu-img{
+      width: 32rpx;
+      height: 32rpx;
+    }
+    .fuwu-text{
+     
+      font-size: 28rpx;
+      font-family: PingFangSC-Semibold, PingFang SC;
+      font-weight: 600;
+      color: #8B6B4E;
+     
+    }
+  }
+
+  .jf{
+    height: 162rpx;
+    background: #FFFFFF;
+    border-radius: 20rpx;
+   
+   
+    position: absolute;
+    top: 1218rpx;
+    z-index: 999;
+    padding: 0 20rpx;
+    width: 90%;
+   
+
+    .jf-header{
+      display: flex;
+      align-items: center;
+      flex: 1;
+      margin-top: 16rpx;
+      justify-content: space-between;
+      .jf-img-big{
+        width: 50rpx;
+        height: 50rpx;
+      }
+      .jf-text-blod{
+        font-size: 30rpx;
+        font-family: PingFangSC-Semibold, PingFang SC;
+        font-weight: 600;
+        color: #309C51;
+
+      }
+      .jf-text{
+        font-size: 24rpx;
+        font-family: PingFangSC-Regular, PingFang SC;
+        font-weight: 400;
+        color: #848484;
+
+      }
+      .jf-img{
+        width: 32rpx;
+        height: 32rpx;
+      }
+    }
+
+    .jf-center{
+      flex: 1;
+      height: 60rpx;
+      background: #FEF8F1;
+      border-radius: 10px;
+      margin-top: 14rpx;
+      display: flex;
+      align-items: center;
+     
+      .jf-tip{
+        width: 26rpx;
+        height: 26rpx;
+      }
+      .jf-tip-text{
+        font-size: 22rpx;
+        font-family: PingFangSC-Regular, PingFang SC;
+        font-weight: 400;
+        color: #FF8A07;
+
+      }
+    }
+  }
+}
 `;
 
 export const DialogView = styled.view<{ height: string }>`

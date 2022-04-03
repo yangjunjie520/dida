@@ -8,8 +8,8 @@ export const StyledOverView = styled(View)`
   display: flex;
   align-items: center;
   flex-direction: column;
-  
-  padding:16rpx 24rpx 200rpx;
+
+  padding: 16rpx 24rpx 200rpx;
 
   .group2 {
     z-index: 4;
@@ -19,7 +19,7 @@ export const StyledOverView = styled(View)`
     align-self: center;
     margin-top: 16rpx;
     justify-content: flex-start;
- 
+
     position: relative;
     display: flex;
     flex-direction: column;
@@ -88,7 +88,7 @@ export const StyledOverView = styled(View)`
     margin-top: 26rpx;
     display: flex;
     flex-direction: column;
-    border-bottom: 2px dashed #F3F3F3;
+    border-bottom: 2px dashed #f3f3f3;
   }
   .word2 {
     z-index: 7;
@@ -1325,11 +1325,10 @@ export const StyledOverView = styled(View)`
     height: 60rpx;
     border-radius: 4rpx;
     background-color: rgba(241, 241, 241, 1);
-    width: 522rpx; 
+    width: 522rpx;
     padding-left: 20rpx;
     /* color: rgba(204, 204, 204, 1); */
     font-size: 26rpx;
-
   }
   .word35 {
     z-index: 91;
@@ -1364,7 +1363,8 @@ export const StyledOverView = styled(View)`
     height: 26rpx !important;
     display: flex;
     align-items: center;
-    margin-top: -4rpx;
+
+    margin-top: -10rpx;
   }
 
   //开关checked为false时，开关的框框的样式
@@ -1382,7 +1382,7 @@ export const StyledOverView = styled(View)`
     background-color: rgba(255, 255, 255, 1);
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.14);
     border-radius: 100%;
-    margin-top: -4rpx;
+    margin-top: -10rpx;
   }
   .zh-sw {
     position: absolute;

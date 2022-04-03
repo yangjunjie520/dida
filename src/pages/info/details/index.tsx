@@ -248,9 +248,7 @@ const WayBillDatails = (props) => {
                     <Text className="txt2">寄</Text>
                   </View>
                   <View className="box3">
-                    <Text decode="true" className="word6">
-                      寄件人&nbsp;&nbsp;{item.senderMobile}
-                    </Text>
+                    <Text decode="true" className="word6">寄件人&nbsp;&nbsp;{item.senderMobile}</Text>
                     <Text className="paragraph1">{item.senderAddress}</Text>
                   </View>
                 </View>
@@ -259,9 +257,7 @@ const WayBillDatails = (props) => {
                     <Text className="info5">收</Text>
                   </View>
                   <View className="layer2">
-                    <Text decode="true" className="info6">
-                      收件人&nbsp;&nbsp;{item.receiveMobile}
-                    </Text>
+                    <Text decode="true" className="info6">收件人&nbsp;&nbsp;{item.receiveMobile}</Text>
                     <Text className="infoBox1">{item.receiveAddress}</Text>
                   </View>
                 </View>

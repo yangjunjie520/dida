@@ -1,5 +1,5 @@
-import { styled } from 'linaria/react'
-import { View } from '@tarojs/components'
+import { styled } from "linaria/react";
+import { View } from "@tarojs/components";
 
 export const StyledOverview = styled(View)`
   background: #f7f7f7;
@@ -99,7 +99,7 @@ export const StyledOverview = styled(View)`
     margin-top: 4rpx;
   }
 
-  .cont-box{
+  .cont-box {
     margin-top: 42rpx;
   }
   .item {
@@ -107,11 +107,10 @@ export const StyledOverview = styled(View)`
     align-items: center;
     justify-content: center;
     padding: 0 24rpx;
-   
   }
   .bd1-0 {
     z-index: 30;
-   
+
     border-radius: 20rpx;
     background-color: rgba(255, 255, 255, 1);
     margin-bottom: 16rpx;
@@ -124,14 +123,14 @@ export const StyledOverview = styled(View)`
   }
   .outer1-0 {
     z-index: auto;
-   
+
     height: 176rpx;
     display: flex;
     flex-direction: column;
   }
   .info1-0 {
     z-index: 55;
-  
+
     height: 42rpx;
     display: block;
     overflow-wrap: break-word;
@@ -146,7 +145,7 @@ export const StyledOverview = styled(View)`
   }
   .word6-0 {
     z-index: 56;
-   
+
     height: 40rpx;
     display: block;
     overflow-wrap: break-word;
@@ -161,18 +160,17 @@ export const StyledOverview = styled(View)`
   }
   .main2-0 {
     z-index: 54;
-  
+
     height: 2rpx;
-    background: url(https://lanhu.oss-cn-beijing.aliyuncs.com/SketchPngf4c0c13a867b3ef0917a78112c6dd33f25d17fb8880634c5d0b5eb4c53871473)
-      0rpx 0rpx no-repeat;
-    background-size: 646rpx 4rpx;
+    background: #f3f3f3;
+
     margin-top: 28rpx;
     display: flex;
     flex-direction: column;
   }
   .main3-0 {
     z-index: auto;
-   
+
     height: 40rpx;
     margin-top: 18rpx;
     flex-direction: row;
@@ -239,119 +237,118 @@ export const StyledOverview = styled(View)`
     margin-left: 6rpx;
   }
 
-
   .box1 {
-  z-index: auto;
-  width: 48rpx;
+    z-index: auto;
+    width: 48rpx;
 
-  display: flex;
-  flex-direction: column;
-}
-.label2 {
-  z-index: 84;
-  width: 48rpx;
-  height: 48rpx;
-}
-.bd2 {
-  z-index: 87;
-  width: 48rpx;
-  height: 48rpx;
-  background: url(https://lanhu.oss-cn-beijing.aliyuncs.com/SketchPnge562a6705f916fd643903ac460ad506b8736c3b277bf9bfe80e1ba00767445af) -2rpx -2rpx no-repeat;
-  background-size: 52rpx 52rpx;
-  display: flex;
-  flex-direction: column;
-}
+    display: flex;
+    flex-direction: column;
+  }
+  .label2 {
+    z-index: 84;
+    width: 48rpx;
+    height: 48rpx;
+  }
+  .bd2 {
+    z-index: 87;
+    width: 48rpx;
+    height: 48rpx;
+    background: url(https://lanhu.oss-cn-beijing.aliyuncs.com/SketchPnge562a6705f916fd643903ac460ad506b8736c3b277bf9bfe80e1ba00767445af) -2rpx -2rpx
+      no-repeat;
+    background-size: 52rpx 52rpx;
+    display: flex;
+    flex-direction: column;
+  }
 
+  .block5 {
+    z-index: auto;
+    width: 100%;
+    height: 80rpx;
+    flex-direction: row;
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    bottom: 100rpx;
+  }
+  .section1 {
+    z-index: 88;
+    height: 80rpx;
+    border-radius: 40rpx;
+    border: 1px solid rgba(255, 114, 1, 1);
+    width: 340rpx;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+  .word7 {
+    z-index: 89;
+    width: 60rpx;
+    height: 42rpx;
+    display: block;
+    overflow-wrap: break-word;
+    color: rgba(255, 114, 1, 1);
+    font-size: 30rpx;
+    font-family: PingFangSC-Medium;
+    white-space: nowrap;
+    line-height: 42rpx;
+    text-align: left;
+  }
 
-.block5 {
-  z-index: auto;
-  width: 702rpx;
-  height: 80rpx;
-  flex-direction: row;
-  display: flex;
-  justify-content: space-between;
-  margin: 388rpx 0 0 24rpx;
-}
-.section1 {
-  z-index: 88;
-  height: 80rpx;
-  border-radius: 40rpx;
-  border: 1px solid rgba(255,114,1,1);
-  width: 340rpx;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-}
-.word7 {
-  z-index: 89;
-  width: 60rpx;
-  height: 42rpx;
-  display: block;
-  overflow-wrap: break-word;
-  color: rgba(255,114,1,1);
-  font-size: 30rpx;
-  font-family: PingFangSC-Medium;
-  white-space: nowrap;
-  line-height: 42rpx;
-  text-align: left;
-}
+  .section2 {
+    z-index: 85;
+    height: 80rpx;
+    border-radius: 40rpx;
+    background: linear-gradient(136deg, #fe9f0c 0%, #ff7201 100%);
+    width: 340rpx;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+  .word8 {
+    z-index: 86;
+    width: 120rpx;
+    height: 42rpx;
+    display: block;
+    overflow-wrap: break-word;
+    color: rgba(255, 255, 255, 1);
+    font-size: 30rpx;
+    font-family: PingFangSC-Medium;
+    white-space: nowrap;
+    line-height: 42rpx;
+    text-align: left;
+  }
 
-.section2 {
-  z-index: 85;
-  height: 80rpx;
-  border-radius: 40rpx;
-  background: linear-gradient(136deg, #FE9F0C 0%, #FF7201 100%);
-  width: 340rpx;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-}
-.word8 {
-  z-index: 86;
-  width: 120rpx;
-  height: 42rpx;
-  display: block;
-  overflow-wrap: break-word;
-  color: rgba(255,255,255,1);
-  font-size: 30rpx;
-  font-family: PingFangSC-Medium;
-  white-space: nowrap;
-  line-height: 42rpx;
-  text-align: left;
-}
-
-
-/*  */
-.group1 {
-  z-index: 93;
-  height: 80rpx;
-  border-radius: 40rpx;
-  border: 1px solid rgba(187,187,187,1);
-  width: 340rpx;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-}
-.txt5 {
-  z-index: 94;
-  width: 60rpx;
-  height: 42rpx;
-  display: block;
-  overflow-wrap: break-word;
-  color: rgba(102,102,102,1);
-  font-size: 30rpx;
-  font-family: PingFangSC-Medium;
-  white-space: nowrap;
-  line-height: 42rpx;
-  text-align: left;
-}
-`
+  /*  */
+  .group1 {
+    z-index: 93;
+    height: 80rpx;
+    border-radius: 40rpx;
+    border: 1px solid rgba(187, 187, 187, 1);
+    width: 340rpx;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+  .txt5 {
+    z-index: 94;
+    width: 60rpx;
+    height: 42rpx;
+    display: block;
+    overflow-wrap: break-word;
+    color: rgba(102, 102, 102, 1);
+    font-size: 30rpx;
+    font-family: PingFangSC-Medium;
+    white-space: nowrap;
+    line-height: 42rpx;
+    text-align: left;
+  }
+`;
 
 export const DialogView = styled.view<{ height: string }>`
   .at-float-layout__container {
-    height: ${props => props.height || 200}px;
+    height: ${(props) => props.height || 200}px;
   }
-`
+`;

@@ -245,7 +245,7 @@ const Index = (props) => {
 
         <View className="mod13">
           <View className="wrap2">
-            <View className="bd1">
+            {/* <View className="bd1">
               <Text className="word8">总体积</Text>
               <Text
                 className="info7"
@@ -307,7 +307,7 @@ const Index = (props) => {
               >
                 ＋
               </Text>
-            </View>
+            </View> */}
             <View className="bd3">
               <View className="bd4">
                 {/* <View className="wrap3">

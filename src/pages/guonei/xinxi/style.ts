@@ -477,7 +477,8 @@ export const StyledOverView = styled(View)`
   .wrap2 {
     z-index: auto;
     width: 656rpx;
-    height: 252rpx;
+    /* height: 252rpx; */
+    height: 192rpx;
     display: flex;
     flex-direction: column;
   }

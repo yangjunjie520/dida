@@ -17,6 +17,19 @@ import Zhuanxian from "../../static/images/home/zhuanxian.png"
 import Kuaidi from "../../static/images/home/kuaidi.png"
 import GuoJi from "../../static/images/home/guoji.png";
 import Tips from "../../static/images/home/tips.png"
+import Send from "../../static/images/home/send@2x.png"
+import Linian from "../../static/images/home/linian@3x.png"
+import Fuwu from "../../static/images/home/fuwu@3x.png"
+import Xinren from "../../static/images/home/xinren@3x.png"
+import Fazhan from "../../static/images/home/fazhan@3x.png"
+import Kefu from "../../static/images/home/kefu.png"
+import Lvse from "../../static/images/home/linian@3x(1).png"
+import Yes from "../../static/images/home/login_yes@3x.png"
+import PayTips from "../../static/images/home/pay_tips@2x.png"
+
+
+
+
 
 const { safeArea } = Taro.getSystemInfoSync();
 const { height } = Taro.getMenuButtonBoundingClientRect();
@@ -79,9 +92,13 @@ const WayBill = (props) => {
                     <View className="main1">
                       <Image className="main3" src={Kuaidi}></Image>
                       <View className="main4"></View>
-                      <Text lines="1" className="word1">
-                        寄快递
-                      </Text>
+                      <View className="kd">
+                        <Text lines="1" className="word1">
+                          寄快递
+                        </Text>
+                        <Text className="daikaifang">待开放</Text>
+                      </View>
+
                       <Text lines="1" decode="true" className="word2">
                         单票快递寄全国6.6元起
                       </Text>
@@ -92,21 +109,25 @@ const WayBill = (props) => {
                     <View className="main1">
                       <Image className="main3" src={GuoJi}></Image>
                       <View className="layer4"></View>
-                      <Text lines="1" className="info1">
-                        寄国际
-                      </Text>
-                      <View className="layer5">
-                        <Text lines="1" className="txt1">
-                        国际快递/专线 电商小包
-                        </Text> 
+                      <View className="kd">
+                        <Text lines="1" className="word1">
+                          寄国际
+                        </Text>
+                        <Text className="daikaifang">待开放</Text>
                       </View>
+
+                      <Text lines="1" decode="true" className="word2">
+                        国际快递/专线 电商小包
+                      </Text>
+
+
                     </View>
                   </View>
                 </View>
               </View>
-             
-              <Image
-                src="https://lanhu.oss-cn-beijing.aliyuncs.com/SketchPng256f0701a0a3d73f7bfe57d4d8d8a9269906c65233a63e6b13ce9e733dd1b237"
+
+              {/* <Image
+                src={Kefu}
                 className="icon4"
               ></Image>
               <View className="outer2">
@@ -116,7 +137,7 @@ const WayBill = (props) => {
                 <Text lines="1" className="word10">
                   在线客服
                 </Text>
-              </View>
+              </View> */}
             </View>
           </View>
           <View className="layer9">
@@ -134,7 +155,8 @@ const WayBill = (props) => {
               className="sao"
               onClick={() => scanCode()}
             >
-              <Text className={"sao-text"}>扫码寄</Text>
+              <Image src={Send} className='sao-img'></Image>
+              &nbsp;<Text className={"sao-text"}>扫码寄</Text>
             </View>
           </View>
 
@@ -149,12 +171,22 @@ const WayBill = (props) => {
             <Image src={BG1} className="bg1"></Image>
             <View className="box12">
               <Image src={Dajian} className="img8"></Image>
-              <Text lines="1" className="info4">
+              <View className="kd">
+                <Text lines="1" className="word1">
+                  寄大件
+                </Text>
+                <Text className="daikaifang">待开放</Text>
+              </View>
+
+              <Text lines="1" decode="true" className="word2">
+                20公斤以上，门到门一口价
+              </Text>
+              {/* <Text lines="1" className="info4">
                 寄大件
               </Text>
               <Text lines="1" className="word15">
                 20公斤以上，门到门一口价
-              </Text>
+              </Text> */}
             </View>
           </View>
 
@@ -171,26 +203,72 @@ const WayBill = (props) => {
               <View className="bd4">
                 <Image src={Zhuanxian} className="img9"></Image>
               </View>
-              <Text lines="1" className="word16">
+              <View className="kd">
+                <Text lines="1" className="word1">
+                  寄专线
+                </Text>
+                <Text className="daikaifang">待开放</Text>
+              </View>
+
+              <Text lines="1" decode="true" className="word2">
+                200公斤或体积1立方以上
+              </Text>
+              {/* <Text lines="1" className="word16">
                 寄专线
               </Text>
               <Text lines="1" decode="true" className="txt3">
-              200公斤或体积1立方以上
-              </Text>
+                200公斤或体积1立方以上
+              </Text> */}
             </View>
             <View className="main6"></View>
           </View>
-        
-        <View className="tipsView" >
-          <Image className="tipsIcon"  src={Tips} />
-          <Text className="tipsText" >寄快递、寄国际目前仅对特定商户开放服务</Text>
-        </View>
-        
+
+          <View className="tipsView" >
+            <Image className="tipsIcon" src={Tips} />
+            <Text className="tipsText" >寄快递、寄国际目前仅对特定商户开放服务</Text>
+          </View>
+
+          <View className="fuwu">
+            <Image src={Linian} className='linian'></Image>
+            <View className="fuwu-box">
+              <View className="fuwu-item">
+                <Image className="fuwu-img" src={Fuwu}></Image>&nbsp;
+                <Text className="fuwu-text">用心服务</Text>
+              </View>
+              <View className="fuwu-item">
+                <Image className="fuwu-img" src={Xinren}></Image>&nbsp;
+                <Text className="fuwu-text">建立信任</Text>
+              </View>
+              <View className="fuwu-item">
+                <Image className="fuwu-img" src={Fazhan}></Image>&nbsp;
+                <Text className="fuwu-text">持续发展</Text>
+              </View>
+            </View>
+          </View>
+
+          <View className="jf">
+            <View className="jf-header">
+              <View style={{
+                display: 'flex',
+                alignItems: 'center'
+              }}>
+                <Image src={Lvse} className='jf-img-big'></Image> &nbsp;
+                <Text className='jf-text-blod'>先寄后付</Text> &nbsp;
+                <Text className='jf-text'>收费有疑问，核实退差价</Text>
+              </View>
+              <Image src={Yes} className='jf-img'></Image>
+            </View>
+            <View className="jf-center">
+              <Image src={PayTips} className="jf-tip"></Image> &nbsp;
+              <Text className="jf-tip-text">请勿线下付款给揽收人员，避免收费不标准及</Text>
+            </View>
+          </View>
+
         </View>
 
 
       </ScrollView>
-    </StyledOverview>
+    </StyledOverview >
   );
 };
 

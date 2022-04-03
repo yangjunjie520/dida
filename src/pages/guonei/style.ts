@@ -7,7 +7,7 @@ export const StyledOverView = styled(View)`
   min-height: 100vh;
   padding-top: 16rpx;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   flex-direction: column;
   padding-bottom: 196rpx;
 
@@ -633,11 +633,12 @@ export const StyledOverView = styled(View)`
   }
   .layer8 {
     z-index: auto;
-    width: 168rpx;
+    min-width: 168rpx;
     height: 42rpx;
     flex-direction: row;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
+    align-items: center;
   }
   .info3 {
     z-index: 111;
@@ -655,12 +656,24 @@ export const StyledOverView = styled(View)`
   }
   .block9 {
     z-index: 114;
-    width: 52rpx;
-    height: 42rpx;
+    width: auto;
+
     overflow-wrap: break-word;
     text-align: left;
     white-space: nowrap;
     font-size: 0rpx;
+    margin-right: 10rpx;
+  }
+  .fangshi {
+    display: flex;
+  }
+  .fangshi-text {
+    font-size: 30rpx;
+    font-family: PingFangSC-Regular;
+    color: rgba(255, 255, 255, 1);
+
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .word14 {
     font-size: 24rpx;
@@ -736,6 +749,10 @@ export const StyledOverView = styled(View)`
     height: 26rpx !important;
 
     background-color: rgba(238, 238, 238, 1);
+  }
+
+  .check {
+    display: flex;
   }
 
   //白圈的样式

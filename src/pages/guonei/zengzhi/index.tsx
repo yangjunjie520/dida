@@ -46,7 +46,10 @@ const Index = (props) => {
             <View className="box1">
               <Text className="txt1">包装服务</Text>
               {/* <View className="box2"></View> */}
-              <Switch color="#ff7201" />
+              &nbsp;
+              <Switch color="#ff7201" style={{
+                transform: 'scale(0.8)'
+              }} />
             </View>
             <Text className="word1">抗震、减压、缓冲等专业包装</Text>
             <View className="box3"></View>
@@ -164,7 +167,11 @@ const Index = (props) => {
             <View className="layer3">
               <Text className="txt18">代收货款</Text>
               <Image src={Warning_circle} className="icon3"></Image>
-              <Switch color="#ff7201" />
+              &nbsp;
+              <Switch color="#ff7201" style={{
+                transform: 'scale(0.8)'
+
+              }} />
               {/* <View className="section1"></View> */}
             </View>
             <Text className="infoBox4">
@@ -190,13 +197,13 @@ const Index = (props) => {
         </View>
 
         <View className="foot">
-          <View className="box7s">
+          {/* <View className="box7s">
             <Image
               src="https://lanhu.oss-cn-beijing.aliyuncs.com/SketchPng7a499fe45eed64ab25c974fecf15c70d576d564de3843223ef9dc9c37df903e5"
               className="icon4"
             ></Image>
             <Text className="info1">我已阅读并同意《代收货服务协议》</Text>
-          </View>
+          </View> */}
           <Button onClick={handleClick} className="box8s">
             <Text decode="true" className="info2">
               确&nbsp;定

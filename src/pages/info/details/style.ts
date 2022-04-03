@@ -1,18 +1,17 @@
-import { styled } from 'linaria/react'
-import { View } from '@tarojs/components'
+import { styled } from "linaria/react";
+import { View } from "@tarojs/components";
 
 export const StyledOverView = styled(View)`
   background: #f7f7f7;
 
   .scrollview {
     height: 100vh;
-   
   }
 
   .section1 {
     z-index: 2;
     height: 484rpx;
-    background: url('../../../static/images/my/pic_bg_2.png') no-repeat;
+    background: url("../../../static/images/my/pic_bg_2.png") no-repeat;
     background-position: center;
     background-size: 750rpx 484rpx;
     width: 750rpx;
@@ -194,7 +193,7 @@ export const StyledOverView = styled(View)`
   }
   .info5s {
     z-index: 46;
-  
+
     height: 40rpx;
     display: block;
     overflow-wrap: break-word;
@@ -241,7 +240,7 @@ export const StyledOverView = styled(View)`
     border-radius: 20rpx;
     background-color: rgba(255, 255, 255, 1);
     width: 702rpx;
-    margin: -78rpx auto 0;
+    margin: -60rpx auto 0;
     display: flex;
     flex-direction: column;
     padding-bottom: 48rpx;
@@ -486,14 +485,14 @@ export const StyledOverView = styled(View)`
   }
   .word18 {
     z-index: 24;
-   
+
     height: 34rpx;
     display: block;
     overflow-wrap: break-word;
     color: rgba(153, 153, 153, 1);
     font-size: 24rpx;
     font-family: PingFangSC-Regular;
-  
+
     line-height: 34rpx;
     text-align: left;
     align-self: flex-start;
@@ -781,7 +780,7 @@ export const StyledOverView = styled(View)`
     z-index: auto;
     width: 620rpx;
     height: 132rpx;
-    margin-top: 48rpx;
+    /* margin-top: 48rpx; */
     flex-direction: row;
     display: flex;
     justify-content: space-between;
@@ -850,7 +849,7 @@ export const StyledOverView = styled(View)`
   }
   .group3 {
     z-index: auto;
-  
+
     height: 42rpx;
     flex-direction: row;
     display: flex;
@@ -1166,7 +1165,7 @@ export const StyledOverView = styled(View)`
   .group12 {
     z-index: auto;
     width: 530rpx;
-   
+
     flex-direction: row;
     display: flex;
     justify-content: space-between;
@@ -1188,7 +1187,7 @@ export const StyledOverView = styled(View)`
   .infoBox2 {
     z-index: 66;
     width: 370rpx;
-  
+
     display: block;
     overflow-wrap: break-word;
     color: rgba(50, 53, 70, 1);
@@ -1200,115 +1199,114 @@ export const StyledOverView = styled(View)`
     text-overflow: ellipsis;
   }
 
-
   /* 底部 */
   .section4 {
-  z-index: 81;
-  height: 108rpx;
-  background-color: rgba(255,255,255,1);
- 
-  width: 750rpx;
-  justify-content: center;
-  align-items: flex-end;
-  padding-right: 24rpx;
-  display: flex;
-  flex-direction: column;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}
-.block3 {
-  z-index: auto;
-  width: 626rpx;
-  height: 86rpx;
-  flex-direction: row;
-  display: flex;
-}
-.bd8 {
-  z-index: auto;
-  width: 96rpx;
-  height: 86rpx;
-  display: flex;
-  flex-direction: column;
-}
-.icon3 {
-  z-index: 86;
-  width: 48rpx;
-  height: 48rpx;
-  align-self: center;
-}
-.txt6 {
-  z-index: 84;
-  width: 96rpx;
-  height: 34rpx;
-  display: block;
-  overflow-wrap: break-word;
-  color: rgba(67,70,88,1);
-  font-size: 24rpx;
-  font-family: PingFangSC-Medium;
-  white-space: nowrap;
-  line-height: 34rpx;
-  text-align: left;
-  margin-top: 4rpx;
-}
-.bd9 {
-  z-index: auto;
-  width: 96rpx;
-  height: 86rpx;
-  margin-left: 120rpx;
-  display: flex;
-  flex-direction: column;
-}
-.label3 {
-  z-index: 93;
-  width: 48rpx;
-  height: 48rpx;
-  align-self: center;
-}
-.word10 {
-  z-index: 85;
-  width: 96rpx;
-  height: 34rpx;
-  display: block;
-  overflow-wrap: break-word;
-  color: rgba(67,70,88,1);
-  font-size: 24rpx;
-  font-family: PingFangSC-Medium;
-  white-space: nowrap;
-  line-height: 34rpx;
-  text-align: left;
-  margin-top: 4rpx;
-}
-.bd10 {
-  z-index: 82;
-  height: 72rpx;
-  border-radius: 36rpx;
-  background: linear-gradient(136deg, #FE9F0C 0%, #FF7201 100%);
-  width: 176rpx;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  margin: 8rpx 0 0 138rpx;
-}
-.info9 {
-  z-index: 83;
-  width: 60rpx;
-  height: 42rpx;
-  display: block;
-  overflow-wrap: break-word;
-  color: rgba(255,255,255,1);
-  font-size: 30rpx;
-  font-family: PingFangSC-Medium;
-  white-space: nowrap;
-  line-height: 42rpx;
-  text-align: left;
-}
-`
+    z-index: 81;
+    height: 108rpx;
+    background-color: rgba(255, 255, 255, 1);
+
+    width: 750rpx;
+    justify-content: center;
+    align-items: flex-end;
+    padding-right: 24rpx;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+  .block3 {
+    z-index: auto;
+    width: 626rpx;
+    height: 86rpx;
+    flex-direction: row;
+    display: flex;
+  }
+  .bd8 {
+    z-index: auto;
+    width: 96rpx;
+    height: 86rpx;
+    display: flex;
+    flex-direction: column;
+  }
+  .icon3 {
+    z-index: 86;
+    width: 48rpx;
+    height: 48rpx;
+    align-self: center;
+  }
+  .txt6 {
+    z-index: 84;
+    width: 96rpx;
+    height: 34rpx;
+    display: block;
+    overflow-wrap: break-word;
+    color: rgba(67, 70, 88, 1);
+    font-size: 24rpx;
+    font-family: PingFangSC-Medium;
+    white-space: nowrap;
+    line-height: 34rpx;
+    text-align: left;
+    margin-top: 4rpx;
+  }
+  .bd9 {
+    z-index: auto;
+    width: 96rpx;
+    height: 86rpx;
+    margin-left: 120rpx;
+    display: flex;
+    flex-direction: column;
+  }
+  .label3 {
+    z-index: 93;
+    width: 48rpx;
+    height: 48rpx;
+    align-self: center;
+  }
+  .word10 {
+    z-index: 85;
+    width: 96rpx;
+    height: 34rpx;
+    display: block;
+    overflow-wrap: break-word;
+    color: rgba(67, 70, 88, 1);
+    font-size: 24rpx;
+    font-family: PingFangSC-Medium;
+    white-space: nowrap;
+    line-height: 34rpx;
+    text-align: left;
+    margin-top: 4rpx;
+  }
+  .bd10 {
+    z-index: 82;
+    height: 72rpx;
+    border-radius: 36rpx;
+    background: linear-gradient(136deg, #fe9f0c 0%, #ff7201 100%);
+    width: 176rpx;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin: 8rpx 0 0 138rpx;
+  }
+  .info9 {
+    z-index: 83;
+    width: 60rpx;
+    height: 42rpx;
+    display: block;
+    overflow-wrap: break-word;
+    color: rgba(255, 255, 255, 1);
+    font-size: 30rpx;
+    font-family: PingFangSC-Medium;
+    white-space: nowrap;
+    line-height: 42rpx;
+    text-align: left;
+  }
+`;
 
 export const DialogView = styled.view<{ height: string }>`
   .at-float-layout__container {
-    height: ${props => props.height || 200}px;
+    height: ${(props) => props.height || 200}px;
   }
-`
+`;

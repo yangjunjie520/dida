@@ -1,4 +1,4 @@
-import { ConnectState as FilterConnectState } from "@/models/filter";
+
 import {
   Text,
   View,
@@ -7,32 +7,108 @@ import {
   Button,
   Input,
 } from "@tarojs/components";
-import Taro from "@tarojs/taro";
+import Taro, { useRouter } from "@tarojs/taro";
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { AtToast, AtIcon, AtInput } from "taro-ui";
 import AddressPicker from "../../../../components/addressPicker";
+import { insertWxAdd, updataWxAdd } from '../api'
 
 import { StyledOverview } from "./style";
 import Icon_pic from "../../../../static/images/my/icon_pic.png";
 import Icon_dizhibu from "../../../../static/images/my/icon_dizhibu.png";
+import AddressParse from "address-parse";
 
 const { safeArea } = Taro.getSystemInfoSync();
 
 const Address = (props) => {
+  const user = Taro.getStorageSync("user");
   const [pickerShow, setPickerShow] = useState(false);
   const [params, setParams] = useState({
-    
+    openid: user.openid,
+    userId: user.userId,
+    address: '',
+    wxPhone: '',
+    wxName: '',
   })
 
-  const { overview, dispatch } = props;
+  const [del, setDel] = useState('')
+  const [info, setInfo] = useState('')
+  const [gongsi, setGs] = useState('')
 
-  useEffect(() => { }, [dispatch]);
+  const { overview, dispatch } = props;
+  const router = useRouter();
+  const id = router.params.id
+  useEffect(() => {
+
+
+    if (id) {
+
+      const addres = Taro.getStorageSync("addres");
+      console.log(addres)
+      setParams(addres)
+      const result = AddressParse.parse(addres.address);
+      const i = `${result[0].province}${result[0].city}${result[0].area}`
+      setInfo(i)
+      setDel(addres.address.replace(i, ''))
+
+
+    }
+
+  }, []);
 
   const onHandleToggleShow = (info) => {
-    console.log(info);
+
+    setInfo(info)
     setPickerShow(false)
   };
+
+  const add = async () => {
+
+    if (params.wxName === '') {
+      Taro.showToast({
+        title: "请填写姓名",
+        icon: "none",
+        duration: 2000,
+      });
+      return false
+    }
+
+    if (params.wxPhone === '') {
+      Taro.showToast({
+        title: "请填写电话号码",
+        icon: "none",
+        duration: 2000,
+      });
+      return false
+    }
+
+    if (info === '') {
+      Taro.showToast({
+        title: "请选择城市",
+        icon: "none",
+        duration: 2000,
+      });
+      return false
+    }
+
+    if (del === '') {
+      Taro.showToast({
+        title: "请填写详细地址",
+        icon: "none",
+        duration: 2000,
+      });
+      return false
+    }
+    params.address = `${info}${del}${gongsi}`
+
+    const res = id ? await updataWxAdd(params) : await insertWxAdd(params)
+    if (res.code === 200) {
+      Taro.navigateBack({});
+    }
+
+    console.log(res)
+  }
 
   return (
     <StyledOverview>
@@ -64,8 +140,21 @@ const Address = (props) => {
           <View className="item">
             <View className="group1-0">
               <View className="mod2-0">
-                <Input type="text" placeholder="真实姓名" className="input" />
-                <Input type="text" placeholder="电话" className="input" />
+                <Input type="text" placeholder="真实姓名" className="input" value={params.wxName}
+                  onInput={(e) => {
+
+                    setParams({
+                      ...params,
+                      wxName: e.detail.value
+                    })
+                  }} />
+                <Input type="text" placeholder="电话" className="input" value={params.wxPhone} onInput={(e) => {
+
+                  setParams({
+                    ...params,
+                    wxPhone: e.detail.value
+                  })
+                }} />
 
                 {/* <View className="mod4-0"></View> */}
               </View>
@@ -75,7 +164,7 @@ const Address = (props) => {
           <View className="item" onClick={() => setPickerShow(true)}>
             <View className="group1-0">
               <View className="mod2-0">
-                <Text className="input">城市/区域</Text>
+                <Text className="input">{info === '' ? '城市/区域' : info}</Text>
 
                 {/* <View className="mod4-0"></View> */}
               </View>
@@ -89,6 +178,14 @@ const Address = (props) => {
                   type="text"
                   placeholder="详细地址（例如:&nbsp;**街**号**)"
                   className="input"
+                  value={del}
+                  onInput={(e) => {
+
+                    setDel(
+
+                      e.detail.value
+                    )
+                  }}
                 />
 
                 {/* <View className="mod4-0"></View> */}
@@ -103,6 +200,11 @@ const Address = (props) => {
                   type="text"
                   placeholder="公司名称（选填）"
                   className="input"
+                  onInput={(e) => {
+                    setGs(
+                      e.detail.value
+                    )
+                  }}
                 />
 
                 {/* <View className="mod4-0"></View> */}
@@ -118,7 +220,7 @@ const Address = (props) => {
         </View>
       </View>
 
-      <Button bindtap="onClick" class="layer5">
+      <Button bindtap="onClick" class="layer5" onClick={add}>
         <Text lines="1" decode="true" class="info2">
           确&nbsp;定
         </Text>
