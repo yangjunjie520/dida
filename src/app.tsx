@@ -30,13 +30,13 @@ class App extends React.Component {
         console.log("code为：", res.code);
         if (res.code) {
           Taro.request({
-            url: "http://159.75.52.36/prod-api/jsapi/login",
+            url: "https://jjddwwll.com/prod-api/jsapi/login",
             data: {
               code: res.code,
               wxUserVo: {
                 gender: 0,
                 parentOpenid: "",
-                userId: 1817,
+                userId: 2560,
                 smallSource: 0,
               },
             },
@@ -51,7 +51,7 @@ class App extends React.Component {
                   // 保存用户信息到服务端
                   Taro.request({
                     // url: "http://localhost:8080/wx/getUserInfo",
-                    url: "http://159.75.52.36/prod-api/jsapi/getUserInfo",
+                    url: "https://jjddwwll.com/prod-api/jsapi/getUserInfo",
                     data: {
                       userInfo: res.userInfo,
                       openid: openid,

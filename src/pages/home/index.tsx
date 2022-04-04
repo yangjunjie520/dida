@@ -101,9 +101,9 @@ const WayBill = (props) => {
               <View
                 className="layer13"
                 onClick={() => {
-                  Taro.navigateTo({
-                    url: "/pages/guonei/index",
-                  });
+                  // Taro.navigateTo({
+                  //   url: "/pages/guonei/index",
+                  // });
                 }}
               >
                 <Image src={BG1} className="bg1"></Image>
@@ -131,9 +131,9 @@ const WayBill = (props) => {
               <View
                 className="layer14"
                 onClick={() => {
-                  Taro.navigateTo({
-                    url: "/pages/guonei/index",
-                  });
+                  // Taro.navigateTo({
+                  //   url: "/pages/guonei/index",
+                  // });
                 }}
               >
                 <Image src={BG2} className="bg1"></Image>
@@ -278,15 +278,15 @@ const WayBill = (props) => {
             setKf(false)
             e.stopPropagation()
           }}>
-            <View className="modal">
 
 
 
-              <Image src={Erweima} show-menu-by-longpress mode="aspectFit" className="img"></Image>
+
+            <Image src={Erweima} show-menu-by-longpress mode="aspectFit" className="img"></Image>
 
 
 
-            </View>
+
           </View>
         }
       </ScrollView>

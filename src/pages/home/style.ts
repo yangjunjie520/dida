@@ -1546,23 +1546,18 @@ export const StyledOverview = styled(View)`
     bottom: 0;
     z-index: 9999;
     padding: 126rpx 32rpx;
-  }
-  .modal {
-   
-    background: #ffffff;
-    /* position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0; */
-    display: flex;
-    /* flex: 1; */
-    height: 100%;
     align-items: center;
+    display: flex;
     justify-content: center;
+
     .img{
       flex: 1;
+      height: 100%;
+      width: 100%;
+      
     }
   }
+
 
   .i-cent{
     align-items: center;
