@@ -41,8 +41,8 @@ const Index = (props) => {
 
   const select = [
     {
-      label: "汽配件",
-      value: '汽配件',
+      label: "汽车配件",
+      value: '汽车配件',
     },
     // {
     //   label: "特快零担",
@@ -189,7 +189,7 @@ const Index = (props) => {
             {goods ? (
               <View className="active">
                 <Text className="ac-text">
-                  {goods === '汽配件' ? "汽配件" : ""}
+                  {goods === '汽车配件' ? "汽车配件" : ""}
                 </Text>
                 <Image
                   src={Icon_close}

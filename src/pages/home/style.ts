@@ -7,19 +7,18 @@ export const StyledOverview = styled(View)`
   }
   .sao {
     background: #fff;
-    margin-left: 32rpx;
-
     width: 174rpx;
     border-radius: 20rpx;
     text-align: center;
-    margin-top: 220rpx;
     display: flex;
     align-items: center;
-    justify-content: center;
-   
+    justify-content: center; 
     height: 56rpx;
     background: #FFFFFF;
     border-radius: 30rpx;
+    position: absolute;
+    bottom: 130rpx;
+    left: 32rpx;
   }
   .sao-img{
     width:26rpx;
@@ -33,27 +32,27 @@ export const StyledOverview = styled(View)`
     z-index: 1;
     position: relative;
     width: 750rpx;
-    height: 1600rpx;
-    overflow: hidden;
+  
+  
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+   
     align-items: center;
   }
   .layer1 {
     z-index: auto;
     width: 746rpx;
-    height: 1600rpx;
+
     display: flex;
     flex-direction: column;
   }
   .box1 {
     z-index: 2;
-    height: 1600rpx;
+  
     background-color: rgba(247, 247, 247, 1);
-    width: 746rpx;
+ 
     justify-content: flex-end;
-    padding-bottom: 136rpx;
+    margin-top: 22rpx;
     align-items: center;
     position: relative;
     display: flex;
@@ -62,11 +61,10 @@ export const StyledOverview = styled(View)`
   .outer1 {
     z-index: auto;
     width: 702rpx;
-    height: 768rpx;
+ 
     display: flex;
     flex-direction: column;
-    position: absolute;
-    top: 744rpx;
+   
   }
   .wrap1 {
     z-index: auto;
@@ -138,7 +136,7 @@ export const StyledOverview = styled(View)`
     line-height: 48rpx;
     text-align: left;
     align-self: flex-start;
-   
+    font-weight: 600;
   }
   .word2 {
     z-index: 155;
@@ -809,11 +807,12 @@ export const StyledOverview = styled(View)`
     background-repeat: no-repeat;
     background-size: 750rpx 566rpx;
     width: 750rpx;
-    position: absolute;
+    /* position: absolute;
     left: 0rpx;
-    top: 0rpx;
+    top: 0rpx; */
     display: flex;
     flex-direction: column;
+    position: relative;
   }
   .wrap9 {
     z-index: auto;
@@ -1062,14 +1061,13 @@ export const StyledOverview = styled(View)`
     height: 236rpx;
     justify-content: flex-end;
     align-items: flex-start;
-    position: absolute;
-    left: 24rpx;
-    top: 458rpx;
+    /* position: absolute; */
+   
     display: flex;
     flex-direction: column;
     padding: 0 0 24rpx 24rpx;
     border-radius: 20rpx;
-   
+    position: relative;
   }
   .bg1 {
     width: 138rpx;
@@ -1123,9 +1121,9 @@ export const StyledOverview = styled(View)`
   }
 
   .layer14 {
-    position: absolute;
-    left: 386rpx;
-    top: 458rpx;
+    /* position: absolute; */
+    /* left: 386rpx; */
+    /* top: 458rpx; */
     display: flex;
     flex-direction: column;
     border-radius: 20rpx;
@@ -1139,6 +1137,7 @@ export const StyledOverview = styled(View)`
     height: 236rpx;
     justify-content: flex-end;
     align-items: flex-start;
+     position: relative;
   }
   .main5 {
     z-index: auto;
@@ -1386,9 +1385,8 @@ export const StyledOverview = styled(View)`
     padding: 12rpx 20rpx 12rpx 20rpx;
     width: 90%;
     border-radius: 10rpx;
-    position: absolute;
-    top: 1024rpx;
-    z-index: 999;
+    margin-top: 20rpx;
+   
   }
   .tipsIcon{
     width:20rpx;
@@ -1424,13 +1422,14 @@ export const StyledOverview = styled(View)`
     /* padding: 0 20rpx; */
     display: flex;
     align-items: center;
-    position: absolute;
-    top: 1124rpx;
+  
     z-index: 999;
     padding: 0 20rpx;
-    width: 90%;
+
     justify-content: space-between;
-    
+    width: 90%;
+    margin-top: 30rpx;
+
     .linian{
       width: 50rpx;
       height: 50rpx;
@@ -1479,14 +1478,11 @@ export const StyledOverview = styled(View)`
     height: 162rpx;
     background: #FFFFFF;
     border-radius: 20rpx;
-   
-   
-    position: absolute;
-    top: 1268rpx;
     z-index: 999;
     padding: 0 20rpx;
     width: 90%;
-   
+    margin-top: 30rpx;
+
 
     .jf-header{
       display: flex;
@@ -1566,6 +1562,23 @@ export const StyledOverview = styled(View)`
     .img{
       flex: 1;
     }
+  }
+
+  .i-cent{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin-top: -100rpx;
+    background: rgba(247,247,247,1);
+    padding-bottom: 150rpx;
+  }
+  .i-select{
+    display: flex;
+    justify-content: space-between;
+  
+    align-items: center;
+  
+    width: 702rpx;
   }
 }
 `;

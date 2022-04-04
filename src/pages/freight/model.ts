@@ -33,9 +33,13 @@ const model: Model & ModelType = {
   },
   effects: {
     *orderList({}, { put, select }) {
+      Taro.showLoading({
+        title: "加载中",
+      });
       let freight = yield select((state) => state.freight);
       const res = yield OrderList(freight.params);
       if (res) {
+        Taro.hideLoading();
         yield put({
           type: "setList",
           payload: res.rows,

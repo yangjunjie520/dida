@@ -595,26 +595,26 @@ export const StyledOverView = styled(View)`
     bottom: 26rpx;
     left: 0;
     right: 0;
-    height: 100rpx;
+
     z-index: 108;
     padding: 0 24rpx;
   }
   .outer9 {
     /* background: url(https://lanhu.oss-cn-beijing.aliyuncs.com/SketchPng8db55a8506aef09b54030be274bf2ccec4577d04562bdea3981f5b7a202328cf)
       100% no-repeat; */
-    background: linear-gradient(145deg, #fe9f0c 0%, #ff7201 100%);
+    background: #1f2430;
     align-self: center;
 
     justify-content: flex-start;
     align-items: flex-start;
     display: flex;
     flex-direction: column;
-    padding: 6rpx 0 0 52rpx;
+    padding: 0 0 0 52rpx;
     border-radius: 60rpx;
   }
   .section4 {
     z-index: auto;
-    width: 564rpx;
+    width: 100%;
     height: 80rpx;
     flex-direction: row;
     display: flex;
@@ -626,6 +626,7 @@ export const StyledOverView = styled(View)`
     height: 80rpx;
     display: flex;
     flex-direction: column;
+    justify-content: center;
   }
   .layer8 {
     z-index: auto;
@@ -664,7 +665,7 @@ export const StyledOverView = styled(View)`
     display: flex;
   }
   .fangshi-text {
-    font-size: 30rpx;
+    font-size: 28rpx;
     font-family: PingFangSC-Regular;
     color: rgba(255, 255, 255, 1);
 
@@ -680,7 +681,7 @@ export const StyledOverView = styled(View)`
     text-overflow: ellipsis;
   }
   .info4 {
-    font-size: 30rpx;
+    font-size: 24rpx;
     font-family: PingFangSC-Regular;
     color: rgba(255, 255, 255, 1);
     line-height: 34rpx;
@@ -691,7 +692,7 @@ export const StyledOverView = styled(View)`
     z-index: auto;
     width: 348rpx;
     height: 34rpx;
-    margin-top: 4rpx;
+
     flex-direction: row;
     display: flex;
     justify-content: space-between;
@@ -717,17 +718,13 @@ export const StyledOverView = styled(View)`
   }
   .word16 {
     z-index: 113;
-    width: 60rpx;
-    height: 42rpx;
+
     display: block;
     overflow-wrap: break-word;
     color: rgba(255, 255, 255, 1);
     font-size: 30rpx;
     font-family: PingFangSC-Medium;
     white-space: nowrap;
-    line-height: 42rpx;
-    text-align: left;
-    margin-top: 24rpx;
   }
 
   /* Switch开关样式 */
@@ -816,6 +813,9 @@ export const StyledOverView = styled(View)`
     width: 256rpx;
     height: 60rpx;
     text-align: center;
+    align-items: center;
+    justify-content: center;
+    display: flex;
   }
   .s-text {
     font-size: 28rpx;
@@ -849,6 +849,20 @@ export const StyledOverView = styled(View)`
     font-family: PingFangSC-Medium, PingFang SC;
     font-weight: 500;
     color: #ffffff;
+  }
+  .tixi {
+    width: 160rpx;
+    /* border-top: none;
+    border-left: 40rpx solid transparent;
+    border-bottom: 80rpx solid #ff7201;
+    border-right: none; */
+    height: 0;
+    border-radius: 0 60rpx 60rpx 0;
+    display: flex;
+    height: 80rpx;
+    background: #ff7201;
+    align-items: center;
+    justify-content: center;
   }
 `;
 

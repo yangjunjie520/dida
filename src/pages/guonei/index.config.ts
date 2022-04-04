@@ -1,6 +1,5 @@
 export default {
-    navigationBarTitleText: '国内货运',
-    // navigationStyle: 'custom',
-    navigationBarTextStyle: 'black'
-  }
-  
+  navigationBarTitleText: "扫码寄",
+  // navigationStyle: 'custom',
+  navigationBarTextStyle: "black",
+};

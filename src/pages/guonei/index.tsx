@@ -34,6 +34,8 @@ const Index = (props) => {
   const [fukuan, setFukuan] = useState(false)
   const [price, setPrice] = useState(null)
 
+  const [pays, setPya] = useState(1) // 1到付  2寄付
+
   const setCurrentSwiper = (current) => {
     setCurrent(current);
   };
@@ -164,7 +166,7 @@ const Index = (props) => {
               </View>
               <View className="main2">
                 <Text decode="true" className="txt2">
-                  {receiveName === '' ? '寄件人信息' : `${receiveName}&nbsp;&nbsp;${receiveMobile}`}
+                  {receiveName === '' ? '收件人信息' : `${receiveName}&nbsp;&nbsp;${receiveMobile}`}
                 </Text>
                 <Text className="paragraph1">
                   {receiveAddress === '' ? '填写完整信息' : `${receiveAddress}`}
@@ -237,7 +239,7 @@ const Index = (props) => {
                           : "特快重货"
                         : "请填写(20KG以上物品)"} */}
                       {goods
-                        ? goods
+                        ? `${goods}/${weight}KG`
                         : "请填写物品信息"}
                     </Text>
                     <Image src={Jiantou} className="jiantou"></Image>
@@ -292,7 +294,9 @@ const Index = (props) => {
                   <View className="mod2-0">
                     <Text className="input">保价</Text>
                     <View className="opt">
-                      <Text className="input">
+                      <Text className="input" style={{
+                        textAlign: 'right'
+                      }}>
                         {guaranteeValueAmount
                           ? `￥${guaranteeValueAmount}`
                           : "请填写保价信息"}
@@ -410,7 +414,7 @@ const Index = (props) => {
                   <View className="fangshi" onClick={(e) => {
                     setFukuan(true)
                     e.stopPropagation()
-                  }}><Text className="fangshi-text">寄付现结</Text></View>
+                  }}><Text className="fangshi-text">{pays === 1 ? '货到付款' : '' || pays === 2 ? '寄付现结' : ''}</Text></View>
                 </View>
                 <View className="layer9">
                   {/* <Image
@@ -420,15 +424,18 @@ const Index = (props) => {
                   <Text className="word15">费用以小哥核算为准</Text>
                 </View>
               </View>
-              <Text
-                className="word16"
-                onClick={(e) => {
-                  pay();
-                  e.stopPropagation();
-                }}
-              >
-                下单
-              </Text>
+              <View className="tixi">
+                <Text
+                  className="word16"
+                  onClick={(e) => {
+                    pay();
+                    e.stopPropagation();
+                  }}
+                >
+                  下单
+                </Text>
+              </View>
+
             </View>
           </View>
         </View>
@@ -441,15 +448,21 @@ const Index = (props) => {
                 <AtIcon value='close' size='16' color='#888888'></AtIcon>
               </View>
               <View className="m-cont">
-                <View className="selc avtive">
-                  <Text className="s-text a-text">寄付现结</Text>
+                <View className={`selc ${pays === 1 ? 'avtive' : ''}`} onClick={(e) => {
+                  setPya(1)
+                  e.stopPropagation()
+                }}>
+                  <Text className={`s-text ${pays === 1 ? 'a-text' : ''}`}>货到付款</Text>
+                </View>
+                <View className={`selc ${pays === 2 ? 'avtive' : ''}`} onClick={(e) => {
+                  setPya(2)
+                  e.stopPropagation()
+                }}>
+                  <Text className={`s-text ${pays === 2 ? 'a-text' : ''}`}>寄付现结</Text>
                 </View>
                 {/* <View className="selc">
-               <Text className="s-text">到付</Text>
-             </View>
-             <View className="selc">
-               <Text className="s-text">寄付月结</Text>
-             </View> */}
+                  <Text className="s-text">寄付月结</Text>
+                </View> */}
 
 
               </View>

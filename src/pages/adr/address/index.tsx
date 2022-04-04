@@ -20,11 +20,15 @@ const Address = (props) => {
   const router = useRouter();
   const type = router.params.type
   const queryList = () => {
+    Taro.showLoading({
+      title: "加载中",
+    });
     queryWxAddList({
       openid: user.openid,
       userId: user.userId,
     }).then(res => {
-      console.log(res)
+      Taro.hideLoading();
+
       if (res.code === 200) {
         setList(res.rows)
       }
