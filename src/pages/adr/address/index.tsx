@@ -31,6 +31,12 @@ const Address = (props) => {
 
       if (res.code === 200) {
         setList(res.rows)
+      } else {
+        Taro.showToast({
+          title: `接口异常${res.msg}`,
+          icon: "none",
+          duration: 2000,
+        });
       }
     })
   }
@@ -53,6 +59,12 @@ const Address = (props) => {
           duration: 2000,
         });
         queryList()
+      } else {
+        Taro.showToast({
+          title: `接口异常${res.msg}`,
+          icon: "none",
+          duration: 2000,
+        });
       }
     })
   }

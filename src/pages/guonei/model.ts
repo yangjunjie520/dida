@@ -89,6 +89,12 @@ const model: Model & ModelType = {
         Taro.navigateTo({
           url: `/pages/info/suc/index?deliveryId=${res.deliveryId}`,
         });
+      } else {
+        Taro.showToast({
+          title: `接口异常${res.msg}`,
+          icon: "none",
+          duration: 2000,
+        });
       }
     },
   },
