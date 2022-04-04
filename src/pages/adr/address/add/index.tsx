@@ -105,6 +105,12 @@ const Address = (props) => {
     const res = id ? await updataWxAdd(params) : await insertWxAdd(params)
     if (res.code === 200) {
       Taro.navigateBack({});
+    } else {
+      Taro.showToast({
+        title: `接口异常${res.msg}`,
+        icon: "none",
+        duration: 2000,
+      });
     }
 
     console.log(res)
