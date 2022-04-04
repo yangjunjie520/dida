@@ -2,8 +2,6 @@ import { Reducer } from "redux";
 import { Model } from "dva";
 import { SubmitOrder, WaybillSend } from "./api";
 import Taro, { useRouter } from "@tarojs/taro";
-import AddressParse from "address-parse";
-
 interface StateType {
   params: Record<string, unknown>;
 }
@@ -21,7 +19,6 @@ interface ModelType {
 }
 
 const user = Taro.getStorageSync("user");
-const result = AddressParse.parse("广东省深圳市南山区沙井街道运华大厦1108");
 
 const model: Model & ModelType = {
   namespace: "order",
@@ -31,25 +28,25 @@ const model: Model & ModelType = {
       openid: user.openid,
       collectionMoney: 0,
       customerBoxCode: "",
-      deliveryType: null,
-      goods: "测试",
+      deliveryType: 6,
+      goods: null,
       guaranteeValue: 0,
       guaranteeValueAmount: 0,
       packageCount: 1,
       pickUpEndTime: "",
       pickUpStartTime: "",
       promiseTimeType: 0,
-      receiveAddress: "广东省深圳市南山区沙井街道运华大厦1108",
-      receiveMobile: "15300000000",
-      receiveName: "效用用",
-      receiveProvinceCode: result[0].code,
+      receiveAddress: "",
+      receiveMobile: "",
+      receiveName: "",
+      receiveProvinceCode: "",
       receiveTel: "",
       remark: "",
       salesChannel: "",
-      sendProvinceCode: result[0].code,
-      senderAddress: "广东省深圳市南山区沙井街道运华大厦1108",
-      senderMobile: "17333333333",
-      senderName: "效用用",
+      sendProvinceCode: "",
+      senderAddress: "",
+      senderMobile: "",
+      senderName: "",
       senderTel: "",
       signReturn: 0,
       thirdNo: "",
@@ -61,7 +58,7 @@ const model: Model & ModelType = {
       vloumWidth: 0,
       vloumn: 0,
       warehouseCode: "",
-      weight: 20,
+      weight: 1,
     },
     pay: {
       timeStamp: "",
@@ -74,8 +71,8 @@ const model: Model & ModelType = {
   effects: {
     *payOrder({ isId }, { put, select }) {
       let params = yield select((state) => state.order.params);
-      const { deliveryType } = params;
-      if (!deliveryType) {
+      const { goods } = params;
+      if (!goods) {
         Taro.showToast({
           title: "请选择物品类型",
           icon: "none",
@@ -86,9 +83,12 @@ const model: Model & ModelType = {
       const res = isId
         ? yield WaybillSend({ ...params, deliveryId: isId })
         : yield SubmitOrder(params);
-      console.log(res);
+
       if (res.code === 200) {
-        Taro.navigateBack({});
+        console.log(res);
+        Taro.navigateTo({
+          url: `/pages/info/suc/index?deliveryId=${res.deliveryId}`,
+        });
       }
     },
   },

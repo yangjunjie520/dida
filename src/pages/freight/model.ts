@@ -1,6 +1,6 @@
 import { Reducer } from "redux";
 import { Model } from "dva";
-import { OrderList } from "./api";
+import { OrderList, CancelOrder } from "./api";
 import Taro from "@tarojs/taro";
 
 interface StateType {
@@ -39,6 +39,35 @@ const model: Model & ModelType = {
         yield put({
           type: "setList",
           payload: res.rows,
+        });
+      }
+    },
+    *changes({ payload }, { put, select }) {
+      yield put({
+        type: "save",
+        payload,
+      });
+
+      yield put({
+        type: "orderList",
+      });
+    },
+
+    *clear({ deliveryId }, { put, select }) {
+      const res = yield CancelOrder({
+        userId: user.userId,
+        openid: user.openid,
+        deliveryId,
+      });
+
+      if (res) {
+        Taro.showToast({
+          title: "删除成功",
+          icon: "none",
+          duration: 2000,
+        });
+        yield put({
+          type: "orderList",
         });
       }
     },

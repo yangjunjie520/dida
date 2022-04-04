@@ -7,6 +7,8 @@ import { connect } from 'react-redux'
 import { AtToast, AtIcon } from 'taro-ui'
 
 import { StyledOverview } from './style'
+import { getAccountWxRecord } from './api'
+
 
 
 const { safeArea } = Taro.getSystemInfoSync()
@@ -20,18 +22,19 @@ const WayBill = props => {
         setCurrent(current)
     }
     const { overview, dispatch } = props
-
-
+    const [list, setList] = useState([])
+    const user = Taro.getStorageSync("user");
     useEffect(() => {
-        // dispatch({ type: 'waybill/getDefault' })
-        // // 监听时区变化
-        // Taro.eventCenter.on('timeZoneOnChange', arg => {
-        //   dispatch({ type: 'waybill/getDefault' })
-        // })
-        // Taro.showShareMenu({
-        //   withShareTicket: true,
-        // })
-    }, [dispatch])
+        getAccountWxRecord({
+            openid: user.openid,
+            userId: user.userId,
+        }).then(res => {
+
+            if (res.code === 200) {
+                setList(res.rows)
+            }
+        }).catch(() => { })
+    }, [])
 
     return (
 
@@ -44,7 +47,7 @@ const WayBill = props => {
 
 
 
-            <View className="info">
+            {/* <View className="info">
                 <View className="time">
                     <Text className="yer">2021年</Text><Text className="moon">7</Text><Text className="yer">月</Text>
                 </View>
@@ -52,20 +55,25 @@ const WayBill = props => {
                     <Text>支出：&nbsp; ¥100.00 &nbsp;&nbsp; 收入：&nbsp;&nbsp;¥100.00</Text>
                 </View>
 
-            </View>
+            </View> */}
 
             <View className="list">
-                <View className="item radus-t">
-                    <View className="left">
-                        <Text className="tit">输入文本输入文本输入文本</Text>
-                        <Text className="riqi">9月14日 08:09</Text>
-                    </View>
-                    <View className="qian">
-                        <Text>-10.00</Text>
-                    </View>
-                    <View className="borderb"></View>
-                </View>
-                <View className="item">
+                {
+                    list.map(item => {
+                        <View className="item radus-t">
+                            <View className="left">
+                                <Text className="tit">{item.remark}</Text>
+                                <Text className="riqi">  {item.createTime}</Text>
+                            </View>
+                            <View className="qian">
+                                <Text>-{item.changeAmount}</Text>
+                            </View>
+                            <View className="borderb"></View>
+                        </View>
+                    })
+                }
+
+                {/* <View className="item">
                     <View className="left">
                         <Text className="tit">输入文本输入文本输入文本</Text>
                         <Text className="riqi">9月14日 08:09</Text>
@@ -84,10 +92,10 @@ const WayBill = props => {
                         <Text>-10.00</Text>
                     </View>
 
-                </View>
+                </View> */}
             </View>
 
-            <View className="mask">
+            {/* <View className="mask">
                 <View className="modal">
                     <View className="m-head">
                         <Text className="m-tit">交易类型</Text>
@@ -107,7 +115,7 @@ const WayBill = props => {
                         <Text className="m-bt">确 定</Text>
                     </View>
                 </View>
-            </View>
+            </View> */}
         </StyledOverview>
 
 

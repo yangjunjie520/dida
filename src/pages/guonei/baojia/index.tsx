@@ -94,6 +94,8 @@ const Index = (props) => {
           </View>
         </View>
 
+
+
         <View className="foot">
           <Button onClick={handleClick} className="box8s">
             <Text lines="1" decode="true" className="info2s">

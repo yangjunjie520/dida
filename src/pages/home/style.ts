@@ -12,7 +12,7 @@ export const StyledOverview = styled(View)`
     width: 174rpx;
     border-radius: 20rpx;
     text-align: center;
-    margin-top: 200rpx;
+    margin-top: 220rpx;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -62,11 +62,11 @@ export const StyledOverview = styled(View)`
   .outer1 {
     z-index: auto;
     width: 702rpx;
-    height: 808rpx;
+    height: 768rpx;
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: 704rpx;
+    top: 744rpx;
   }
   .wrap1 {
     z-index: auto;
@@ -572,13 +572,20 @@ export const StyledOverview = styled(View)`
     line-height: 56rpx;
     text-align: left;
   }
+  .kf-tu{
+    position: fixed;
+    right: 24rpx;
+    bottom: 30rpx;
+    z-index: 999;
+  }
   .icon4 {
     z-index: 270;
     position: absolute;
-    left: 626rpx;
-    top: 1226rpx;
+    left: 50%;
+    top: -31rpx;
     width: 54rpx;
     height: 62rpx;
+    margin-left: -27rpx;
   }
   .outer2 {
     z-index: 267;
@@ -589,11 +596,11 @@ export const StyledOverview = styled(View)`
     justify-content: flex-end;
     padding-bottom: 10rpx;
     align-items: center;
-    position: absolute;
-    left: 580rpx;
-    top: 1258rpx;
+   
     display: flex;
     flex-direction: column;
+    background: linear-gradient(158deg, #B79271 0%, #7A5441 100%);
+    border-radius: 10px;
   }
   .txt2 {
     z-index: 269;
@@ -1057,7 +1064,7 @@ export const StyledOverview = styled(View)`
     align-items: flex-start;
     position: absolute;
     left: 24rpx;
-    top: 418rpx;
+    top: 458rpx;
     display: flex;
     flex-direction: column;
     padding: 0 0 24rpx 24rpx;
@@ -1118,7 +1125,7 @@ export const StyledOverview = styled(View)`
   .layer14 {
     position: absolute;
     left: 386rpx;
-    top: 418rpx;
+    top: 458rpx;
     display: flex;
     flex-direction: column;
     border-radius: 20rpx;
@@ -1380,7 +1387,7 @@ export const StyledOverview = styled(View)`
     width: 90%;
     border-radius: 10rpx;
     position: absolute;
-    top: 984rpx;
+    top: 1024rpx;
     z-index: 999;
   }
   .tipsIcon{
@@ -1418,7 +1425,7 @@ export const StyledOverview = styled(View)`
     display: flex;
     align-items: center;
     position: absolute;
-    top: 1084rpx;
+    top: 1124rpx;
     z-index: 999;
     padding: 0 20rpx;
     width: 90%;
@@ -1475,7 +1482,7 @@ export const StyledOverview = styled(View)`
    
    
     position: absolute;
-    top: 1218rpx;
+    top: 1268rpx;
     z-index: 999;
     padding: 0 20rpx;
     width: 90%;
@@ -1531,6 +1538,33 @@ export const StyledOverview = styled(View)`
         color: #FF8A07;
 
       }
+    }
+  }
+
+  .mask {
+    background: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 9999;
+    padding: 126rpx 32rpx;
+  }
+  .modal {
+   
+    background: #ffffff;
+    /* position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0; */
+    display: flex;
+    /* flex: 1; */
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    .img{
+      flex: 1;
     }
   }
 }

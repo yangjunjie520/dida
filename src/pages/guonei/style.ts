@@ -102,18 +102,14 @@ export const StyledOverView = styled(View)`
     }
     .layer2 {
       z-index: 13;
-      width: 646rpx;
-      height: 2rpx;
-      background: #f3f3f3;
-      margin-top: 24rpx;
-      display: flex;
-      flex-direction: column;
+      border-top: 1rpx solid #f3f3f3;
+      padding-top: 24rpx;
     }
     .layer3s {
       z-index: auto;
       width: 646rpx;
       height: 134rpx;
-      margin-top: 24rpx;
+
       flex-direction: row;
       display: flex;
     }
@@ -753,6 +749,13 @@ export const StyledOverView = styled(View)`
 
   .check {
     display: flex;
+    width: 702rpx;
+    align-self: center;
+    margin: 20rpx 0 0 0;
+    align-items: center;
+    .text {
+      font-size: 28rpx;
+    }
   }
 
   //白圈的样式
@@ -770,6 +773,82 @@ export const StyledOverView = styled(View)`
     z-index: 99;
     right: 0;
     top: -8rpx;
+  }
+
+  .mask {
+    background: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 999;
+  }
+  .modal {
+    height: 326rpx;
+    background: #ffffff;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .m-head {
+    padding: 32rpx 24rpx;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .m-tit {
+    height: 50rpx;
+    font-size: 36rpx;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 500;
+    color: #323546;
+    line-height: 50rpx;
+  }
+  .m-cont {
+    display: flex;
+    align-items: center;
+    padding: 0 32rpx;
+  }
+  .selc {
+    width: 256rpx;
+    height: 60rpx;
+    text-align: center;
+  }
+  .s-text {
+    font-size: 28rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #323546;
+  }
+  .avtive {
+    background: #ffffff;
+    border-radius: 38rpx;
+    border: 2rpx solid #ff7201;
+  }
+
+  .a-text {
+    color: #ff7201;
+  }
+
+  .m-foot {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80rpx;
+    background: linear-gradient(136deg, #fe9f0c 0%, #ff7201 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .m-bt {
+    font-size: 30rpx;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 500;
+    color: #ffffff;
   }
 `;
 

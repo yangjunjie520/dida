@@ -25,7 +25,7 @@ const Index = (props) => {
 
   const [paramss, setParamss] = useState(params);
   const {
-    deliveryType,
+    goods,
     weight,
     vloumn,
     vloumHeight,
@@ -35,27 +35,35 @@ const Index = (props) => {
     packageCount,
   } = paramss;
 
+  const [zhix, setZhix] = useState(false);
+  const [jiaod, setJiaod] = useState(false);
+  const [lout, setLout] = useState(false);
+
   const select = [
     {
-      label: "特快零担",
-      value: 6,
+      label: "汽配件",
+      value: '汽配件',
     },
-    {
-      label: "特快重货",
-      value: 25,
-    },
+    // {
+    //   label: "特快零担",
+    //   value: 6,
+    // },
+    // {
+    //   label: "特快重货",
+    //   value: 25,
+    // },
   ];
 
   const handleSelect = (type) => {
     // dispatch({
     //   type: "order/save",
     //   payload: {
-    //     deliveryType: type,
+    //     goods: type,
     //   },
     // });
     setParamss({
       ...paramss,
-      deliveryType: type,
+      goods: type,
     });
   };
 
@@ -97,7 +105,7 @@ const Index = (props) => {
     }
   };
   const handleSub = () => {
-    if (!deliveryType) {
+    if (!goods) {
       Taro.showToast({
         title: "请选择物品类型",
         icon: "none",
@@ -169,7 +177,7 @@ const Index = (props) => {
                 <Text className="word2">必填</Text>
               </View>
             </View>
-            <View className="mod9">
+            {/* <View className="mod9">
               <View className="layer">
                 <View className="wrap1"></View>
                 <Input placeholder="请输入物品名称" className="layer2" />
@@ -177,11 +185,11 @@ const Index = (props) => {
               <Button bindtap="onClick" className="layer3">
                 <Text className="txt1">确定</Text>
               </Button>
-            </View>
-            {deliveryType ? (
+            </View> */}
+            {goods ? (
               <View className="active">
                 <Text className="ac-text">
-                  {deliveryType === 6 ? "特快零担" : "特快重货"}
+                  {goods === '汽配件' ? "汽配件" : ""}
                 </Text>
                 <Image
                   src={Icon_close}
@@ -489,14 +497,53 @@ const Index = (props) => {
               }}
             ></Textarea>
             <View className="main7">
-              <View className="box1">
-                <Text className="info14">请带纸箱</Text>
+              <View className={`box1 ${zhix ? 'r-active' : ''}`} onClick={() => {
+                if (!zhix) {
+                  setParamss({
+                    ...paramss,
+                    remark: `${remark}请带纸箱`,
+                  });
+                } else {
+                  setParamss({
+                    ...paramss,
+                    remark: remark.replace('请带纸箱', ''),
+                  });
+                }
+                setZhix(!zhix)
+              }}>
+                <Text className="info14 r">请带纸箱</Text>
               </View>
-              <View className="box2">
-                <Text className="txt11">请带胶带</Text>
+              <View className={`box1 ${jiaod ? 'r-active' : ''}`} onClick={() => {
+                if (!jiaod) {
+                  setParamss({
+                    ...paramss,
+                    remark: `${remark}请带胶带`,
+                  });
+                } else {
+                  setParamss({
+                    ...paramss,
+                    remark: remark.replace('请带胶带', ''),
+                  });
+                }
+                setJiaod(!jiaod)
+              }}>
+                <Text className="txt11 r">请带胶带</Text>
               </View>
-              <View className="box3">
-                <Text className="word17">需爬楼梯</Text>
+              <View className={`box1 ${lout ? 'r-active' : ''}`} onClick={() => {
+                if (!lout) {
+                  setParamss({
+                    ...paramss,
+                    remark: `${remark}需爬楼梯`,
+                  });
+                } else {
+                  setParamss({
+                    ...paramss,
+                    remark: remark.replace('需爬楼梯', ''),
+                  });
+                }
+                setLout(!lout)
+              }}>
+                <Text className="word17 r">需爬楼梯</Text>
               </View>
             </View>
           </View>

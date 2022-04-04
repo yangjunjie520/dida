@@ -277,17 +277,17 @@ export const StyledOverView = styled(View)`
   }
   .info15 {
     z-index: 14;
-    width: 90rpx;
-    height: 42rpx;
     display: block;
     overflow-wrap: break-word;
     color: rgba(255, 114, 1, 1);
-    font-size: 30rpx;
+    font-size: 28rpx;
     font-family: PingFangSC-Medium;
-    white-space: nowrap;
     line-height: 42rpx;
     text-align: left;
     margin-top: 2rpx;
+    textoverflow: ellipsis;
+    wordwrap: break-word;
+    wordbreak: break-all;
   }
   .box5 {
     z-index: 10;
@@ -338,23 +338,21 @@ export const StyledOverView = styled(View)`
   }
   .mod6 {
     z-index: auto;
-    width: 90rpx;
-
-    display: flex;
-    flex-direction: column;
+    width: 120rpx;
   }
   .word16 {
     z-index: 13;
-    width: 90rpx;
-    height: 42rpx;
     display: block;
     overflow-wrap: break-word;
     color: rgba(50, 53, 70, 1);
-    font-size: 30rpx;
+    font-size: 28rpx;
     font-family: PingFangSC-Medium;
-    white-space: nowrap;
+
     line-height: 42rpx;
     text-align: left;
+    textoverflow: ellipsis;
+    wordwrap: break-word;
+    wordbreak: break-all;
   }
   .info17 {
     z-index: 12;
@@ -486,7 +484,7 @@ export const StyledOverView = styled(View)`
   .word18 {
     z-index: 24;
 
-    height: 34rpx;
+    /* height: 34rpx; */
     display: block;
     overflow-wrap: break-word;
     color: rgba(153, 153, 153, 1);

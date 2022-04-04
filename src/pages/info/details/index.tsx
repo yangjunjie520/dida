@@ -10,7 +10,8 @@ import Xiugai from "../../../static/images/yundan/icon_xiugai.png";
 import moment from "moment";
 
 import Navbar from "@/components/navbar";
-import { OrderList, TraceGet, CancelOrder } from "./api";
+import { OrderList, CancelOrder } from "./api";
+import AddressParse from "address-parse";
 
 const { height } = Taro.getMenuButtonBoundingClientRect();
 
@@ -36,23 +37,24 @@ const WayBillDatails = (props) => {
       .then((res) => {
         if (res) {
           setList(res.rows);
+          setInfo(res.rows[0].logisticsInfo)
         }
       })
       .catch((err) => {
         console.log(err);
       });
-    TraceGet({
-      userId: user.userId,
-      deliveryId,
-    })
-      .then((res) => {
-        if (res) {
-          setInfo(res.data);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    // TraceGet({
+    //   userId: user.userId,
+    //   deliveryId,
+    // })
+    //   .then((res) => {
+    //     if (res) {
+    //       setInfo(res.data);
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   }, []);
 
   const clear = () => {
@@ -60,21 +62,16 @@ const WayBillDatails = (props) => {
     const user = Taro.getStorageSync("user");
     const params = {
       userId: user.userId,
-
+      openid: user.openid,
       deliveryId,
     };
     CancelOrder(params)
       .then((res) => {
         if (res) {
-          //   Taro.showToast({
-          //     title: "取消成功",
-          //     icon: "none",
-          //     duration: 2000,
-          //     complete: () => {
 
-          //     },
-          //   });
-          Taro.navigateBack({});
+          Taro.switchTab({
+            url: '/pages/freight/index'
+          })
         }
       })
       .catch((err) => {
@@ -104,16 +101,16 @@ const WayBillDatails = (props) => {
             <>
               <View className="main3">
                 <Text className="txt1">{item.senderName}</Text>
-                <Text className="word1">待取件</Text>
+                <Text className="word1">{item.logisticsInfo[0].opeTitle}</Text>
                 <Text className="word2">{item.receiveName}</Text>
               </View>
               <View className="main4">
-                <Text className="info3">深圳市</Text>
+                <Text className="info3">{AddressParse.parse(item.senderAddress)[0]?.city}</Text>
                 <Image
                   src="https://lanhu.oss-cn-beijing.aliyuncs.com/SketchPng6f988cf86efc9efa12167ecb77d6c598173d9af90d2b7520dabb8e6edc8eaedf"
                   className="pic1"
                 ></Image>
-                <Text className="info3">深圳市</Text>
+                <Text className="info3">{AddressParse.parse(item.receiveAddress)[0]?.city}</Text>
               </View>
               <View className="main5">
                 <Text className="info5s">运单号：{item.deliveryId}</Text>
@@ -239,7 +236,7 @@ const WayBillDatails = (props) => {
 
         <View className="bd2">
           {list.map((item) => {
-            console.log(item);
+
             return (
               <View className="block2">
                 <Text className="info4">订单信息</Text>
@@ -307,11 +304,12 @@ const WayBillDatails = (props) => {
               </View>
             );
           })}
+
         </View>
 
         <View className="section4">
           <View className="block3">
-            <View
+            {/* <View
               className="bd8"
               onClick={() => {
                 Taro.navigateTo({
@@ -321,7 +319,7 @@ const WayBillDatails = (props) => {
             >
               <Image src={Xiugai} className="icon3"></Image>
               <Text className="txt6">修改运单</Text>
-            </View>
+            </View> */}
             <View
               className="bd9"
               onClick={() => {
@@ -336,6 +334,8 @@ const WayBillDatails = (props) => {
             </Button>
           </View>
         </View>
+
+
       </ScrollView>
     </StyledOverView>
   );

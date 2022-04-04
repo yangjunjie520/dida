@@ -61,6 +61,12 @@ export default (
     // Taro.hideLoading();
     if (res && (res.code === 200 || res.success)) {
       return res;
+    } else {
+      Taro.showToast({
+        title: res.msg,
+        icon: "none",
+        duration: 2000,
+      });
     }
 
     // 00002,没token 00018,token失效 00020,token异地登录 600100,用户已被禁用

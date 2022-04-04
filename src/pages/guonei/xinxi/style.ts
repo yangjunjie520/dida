@@ -12,7 +12,7 @@ export const StyledOverView = styled(View)`
 
   .mod6 {
     z-index: 75;
-    height: 350rpx;
+    height: 200rpx;
     border-radius: 20rpx;
     background-color: rgba(255, 255, 255, 1);
     align-self: center;
@@ -31,6 +31,7 @@ export const StyledOverView = styled(View)`
     flex-direction: column;
   }
   .mod7 {
+    margin-top: 32rpx;
     z-index: auto;
     width: 200rpx;
     height: 44rpx;
@@ -1012,6 +1013,13 @@ export const StyledOverView = styled(View)`
     top: -12rpx;
     width: 36rpx;
     height: 36rpx;
+  }
+  .r-active {
+    border: 2rpx solid #ff7201;
+    box-sizing: border-box;
+    .r {
+      color: #ff7201;
+    }
   }
 `;
 

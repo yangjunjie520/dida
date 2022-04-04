@@ -1,13 +1,21 @@
-import { styled } from 'linaria/react'
-import { View } from '@tarojs/components'
+import { styled } from "linaria/react";
+import { View } from "@tarojs/components";
 
 export const StyledOverview = styled(View)`
-    min-height: 100vh;
-    background: #F7F7F7;
+  height: 100vh;
+  background: #f7f7f7;
+  .scrollview {
+    height: calc(100% - 380rpx);
+    padding: 24rpx 0;
+  }
   .mod1 {
     z-index: 2;
     height: 260rpx;
-    background: linear-gradient(133deg, #ff9433 0%, rgba(255, 196, 86, 0.5) 100%);
+    background: linear-gradient(
+      133deg,
+      #ff9433 0%,
+      rgba(255, 196, 86, 0.5) 100%
+    );
     justify-content: flex-start;
     padding-top: 4rpx;
     align-items: center;
@@ -85,7 +93,7 @@ export const StyledOverview = styled(View)`
   .mod2 {
     z-index: auto;
 
-    height: 48rpx;
+    /* height: 48rpx; */
     flex-direction: row;
     display: flex;
     justify-content: center;
@@ -146,17 +154,17 @@ export const StyledOverview = styled(View)`
   }
 
   .list {
-    padding: 24rpx;
+    padding: 0 24rpx;
   }
 
   .mod4 {
     z-index: 35;
-    height: 500rpx;
+    /* height: 500rpx; */
     border-radius: 20rpx;
     background-color: rgba(255, 255, 255, 1);
     box-shadow: 0px 0px 20px 0px rgba(119, 119, 119, 0.05);
     align-self: center;
-    margin-top: 24rpx;
+    margin-bottom: 24rpx;
     width: 702rpx;
     justify-content: center;
     position: relative;
@@ -166,22 +174,22 @@ export const StyledOverview = styled(View)`
   .outer2 {
     z-index: auto;
     width: 702rpx;
-    height: 464rpx;
+    height: 484rpx;
     display: flex;
     flex-direction: column;
   }
   .layer6 {
     z-index: auto;
-    width: 352rpx;
-    height: 40rpx;
+
+    height: 58rpx;
     margin-left: 24rpx;
     flex-direction: row;
     display: flex;
-    justify-content: space-between;
+    align-items: center;
   }
   .word4 {
     z-index: 52;
-    width: 314rpx;
+    /* width: 314rpx; */
     height: 40rpx;
     display: block;
     overflow-wrap: break-word;
@@ -196,13 +204,13 @@ export const StyledOverview = styled(View)`
     z-index: 42;
     width: 30rpx;
     height: 30rpx;
-    margin-top: 6rpx;
+    /* margin-top: 6rpx; */
   }
   .layer7 {
     z-index: 64;
     width: 702rpx;
     height: 4rpx;
-    margin-top: 18rpx;
+    /* margin-top: 18rpx; */
     display: flex;
     flex-direction: column;
     border-bottom: 2px solid #f3f3f3;
@@ -301,7 +309,7 @@ export const StyledOverview = styled(View)`
   .layer10 {
     z-index: auto;
     width: 652rpx;
-    height: 72rpx;
+    max-height: 72rpx;
     flex-direction: row;
     display: flex;
     justify-content: space-between;
@@ -309,7 +317,7 @@ export const StyledOverview = styled(View)`
   }
   .info5 {
     z-index: 54;
-    width: 78rpx;
+    /* width: 78rpx; */
     height: 36rpx;
     display: block;
     overflow-wrap: break-word;
@@ -323,7 +331,7 @@ export const StyledOverview = styled(View)`
   .layer11 {
     z-index: 56;
     width: 554rpx;
-    height: 72rpx;
+    max-height: 72rpx;
     overflow-wrap: break-word;
     text-align: left;
     font-size: 0rpx;
@@ -436,10 +444,10 @@ export const StyledOverview = styled(View)`
     text-align: left;
     color: #fe7100;
   }
-`
+`;
 
 export const DialogView = styled.view<{ height: string }>`
   .at-float-layout__container {
-    height: ${props => props.height || 200}px;
+    height: ${(props) => props.height || 200}px;
   }
-`
+`;

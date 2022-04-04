@@ -26,7 +26,7 @@ import Kefu from "../../static/images/home/kefu.png"
 import Lvse from "../../static/images/home/linian@3x(1).png"
 import Yes from "../../static/images/home/login_yes@3x.png"
 import PayTips from "../../static/images/home/pay_tips@2x.png"
-
+import Erweima from "../../static/images/home/erweima.jpeg"
 
 
 
@@ -53,6 +53,8 @@ const WayBill = (props) => {
     setCurrent(current);
   };
   const { overview, dispatch } = props;
+
+  const [kf, setKf] = useState(false)
 
   useEffect(() => {
     // dispatch({ type: 'waybill/getDefault' })
@@ -126,18 +128,7 @@ const WayBill = (props) => {
                 </View>
               </View>
 
-              {/* <Image
-                src={Kefu}
-                className="icon4"
-              ></Image>
-              <View className="outer2">
-                <Text lines="1" className="txt2">
-                  1分钟极速报价
-                </Text>
-                <Text lines="1" className="word10">
-                  在线客服
-                </Text>
-              </View> */}
+
             </View>
           </View>
           <View className="layer9">
@@ -163,9 +154,9 @@ const WayBill = (props) => {
           <View
             className="layer13"
             onClick={() => {
-              // Taro.navigateTo({
-              //   url: "/pages/guonei/index",
-              // });
+              Taro.navigateTo({
+                url: "/pages/guonei/index",
+              });
             }}
           >
             <Image src={BG1} className="bg1"></Image>
@@ -264,9 +255,43 @@ const WayBill = (props) => {
             </View>
           </View>
 
+          <View className="kf-tu" onClick={e => {
+            setKf(true)
+            e.stopPropagation()
+          }}>
+            <Image
+              src={Kefu}
+              className="icon4"
+            ></Image>
+            <View className="outer2">
+              <Text lines="1" className="txt2">
+                1分钟极速报价
+              </Text>
+              <Text lines="1" className="word10">
+                在线客服
+              </Text>
+            </View>
+          </View>
         </View>
 
+        {
 
+          kf &&
+          <View className="mask" onClick={e => {
+            setKf(false)
+            e.stopPropagation()
+          }}>
+            <View className="modal">
+
+
+
+              <Image src={Erweima} show-menu-by-longpress mode="aspectFit" className="img"></Image>
+
+
+
+            </View>
+          </View>
+        }
       </ScrollView>
     </StyledOverview >
   );

@@ -1,10 +1,10 @@
 import { Text, View, Image, ScrollView, Button } from "@tarojs/components";
-import Taro, { useDidShow } from "@tarojs/taro";
+import Taro, { useDidShow, useRouter } from "@tarojs/taro";
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { AtToast, AtIcon, AtInput } from "taro-ui";
 import { queryWxAddList, deleteWxAddList } from './api'
-
+import AddressParse from "address-parse";
 
 import { StyledOverview } from "./style";
 
@@ -17,7 +17,8 @@ const Address = (props) => {
   const [list, setList] = useState([])
   const { overview, dispatch } = props;
   const user = Taro.getStorageSync("user");
-
+  const router = useRouter();
+  const type = router.params.type
   const queryList = () => {
     queryWxAddList({
       openid: user.openid,
@@ -52,6 +53,35 @@ const Address = (props) => {
     })
   }
 
+  const handleItem = (item) => {
+    if (!type) return
+    const result = AddressParse.parse(item.address);
+    if (type === 'ji') {
+
+
+      dispatch({
+        type: "order/save",
+        payload: {
+          senderAddress: item.address,
+          senderMobile: item.wxPhone,
+          senderName: item.wxName,
+          sendProvinceCode: result[0].code.substr(0, 2) + "0000",
+        },
+      });
+    } else if (type === 'shou') {
+      dispatch({
+        type: "order/save",
+        payload: {
+          receiveAddress: item.address,
+          receiveMobile: item.wxPhone,
+          receiveName: item.wxName,
+          receiveProvinceCode: result[0].code.substr(0, 2) + "0000",
+        },
+      });
+    }
+    Taro.navigateBack({});
+  }
+
   return (
     <StyledOverview>
       {/* <View className="header">
@@ -82,7 +112,10 @@ const Address = (props) => {
       <View className="cont-box">
         {
           list.map(item => {
-            return <View className="item">
+            return <View className="item" onClick={(e) => {
+              handleItem(item)
+              e.stopPropagation()
+            }}>
               {/* <View className="box1">
               <Image
                 src="https://lanhu.oss-cn-beijing.aliyuncs.com/SketchPng01967dbc284fd6fa6ff8e9d91c24943dae9c3847ebdac60b35125449588df629"
@@ -222,4 +255,8 @@ const Address = (props) => {
   );
 };
 
-export default Address;
+export default connect(({ order }: any) => {
+  return {
+    ...order,
+  };
+})(Address);

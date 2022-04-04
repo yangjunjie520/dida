@@ -9,18 +9,19 @@ import {
   Radio,
   Icon
 } from "@tarojs/components";
-import Taro, { useRouter } from "@tarojs/taro";
+import Taro, { useRouter, useDidShow } from "@tarojs/taro";
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 
 import { StyledOverView } from "./style";
 import Modals from "./modal";
 import AddressParse from 'address-parse';
+import { AtIcon } from 'taro-ui'
 
 
 import Jiantou from "../../static/images/my/jiantou.png";
 import Warning_circle from "../../static/images/warning-circle.png";
-import { ApiPays, PaySearch } from "./api";
+import { ApiPays, PaySearch, getPreOrderPrice } from "./api";
 
 const { safeArea } = Taro.getSystemInfoSync();
 
@@ -30,6 +31,8 @@ const Index = (props) => {
   const isId = router.params.deliveryId
   const [current, setCurrent] = useState(0);
   const [xieyi, setXieyi] = useState(true)
+  const [fukuan, setFukuan] = useState(false)
+  const [price, setPrice] = useState(null)
 
   const setCurrentSwiper = (current) => {
     setCurrent(current);
@@ -42,14 +45,58 @@ const Index = (props) => {
     guaranteeValueAmount,
     collectionMoney,
     openid,
+    senderAddress,
+    senderMobile,
+    senderName,
+    sendProvinceCode,
+    receiveAddress,
+    receiveMobile,
+    receiveName,
+    receiveProvinceCode,
+    goods,
+    weight
   } = params;
-  useEffect(() => {
-    // console.log(props);
 
-  }, [props]);
+  // 对应 onShow
+  useDidShow(() => {
+
+    if (senderName !== '' && receiveName !== '' && weight !== '') {
+      const user = Taro.getStorageSync("user");
+      getPreOrderPrice({
+        userId: user.userId,
+        openid,
+        sendProvinceCode,
+        senderAddress,
+        senderMobile,
+        receiveProvinceCode,
+        receiveAddress,
+        weight,
+      }).then(res => {
+        console.log(res.data)
+        setPrice(res.data)
+
+      })
+    }
+  })
 
   const pay = async () => {
-    if (!deliveryType) {
+    if (senderName === '') {
+      Taro.showToast({
+        title: "请填写寄件人信息",
+        icon: "none",
+        duration: 2000,
+      });
+      return false;
+    }
+    if (receiveName === '') {
+      Taro.showToast({
+        title: "请填写收件人信息",
+        icon: "none",
+        duration: 2000,
+      });
+      return false;
+    }
+    if (!goods) {
       Taro.showToast({
         title: "请选择物品类型",
         icon: "none",
@@ -57,68 +104,78 @@ const Index = (props) => {
       });
       return false;
     }
-    // dispatch({ type: "order/payOrder", isId });
-    const res = await ApiPays({
-      openid: openid,
-      totalFee: 0.01,
-    });
+    dispatch({ type: "order/payOrder", isId });
+    // const res = await ApiPays({
+    //   openid: openid,
+    //   totalFee: 0.01,
+    // });
 
-    Taro.requestPayment({
-      ...res.message,
-      success: function (r) {
-        PaySearch({
-          outTradeNo: res?.message?.outTradeNo,
-        })
-          .then((res) => {
-            if (res) {
-              dispatch({ type: "order/payOrder" });
-            }
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      },
-      fail: function (err) {
-        console.log("支付失败---", res);
-      },
-    });
+    // Taro.requestPayment({
+    //   ...res.message,
+    //   success: function (r) {
+    //     PaySearch({
+    //       outTradeNo: res?.message?.outTradeNo,
+    //     })
+    //       .then((res) => {
+    //         if (res) {
+    //           dispatch({ type: "order/payOrder" });
+    //         }
+    //       })
+    //       .catch((err) => {
+    //         console.log(err);
+    //       });
+    //   },
+    //   fail: function (err) {
+    //     console.log("支付失败---", res);
+    //   },
+    // });
   };
+
+  console.log(price)
 
   return (
     <>
       <StyledOverView>
         <View className="head">
           <View className="section3">
-            <View className="layer3s">
+            <View className="layer3s" style={{ marginBottom: '24rpx' }}>
               <View className="mod2">
                 <Text className="word2">寄</Text>
               </View>
               <View className="main2">
                 <Text decode="true" className="txt2">
-                  寄件人&nbsp;&nbsp;123****12313
+                  {senderName === '' ? '寄件人信息' : `${senderName}&nbsp;&nbsp;${senderMobile}`}
                 </Text>
                 <Text className="paragraph1">
-                  广东省深圳市深圳市南山区留学生 创业大厦1304室
+                  {senderAddress === '' ? '填写完整信息' : `${senderAddress}`}
                 </Text>
               </View>
               <View className="main3"></View>
-              <Text className="info3">地址簿</Text>
+              <Text className="info3" onClick={() => {
+                Taro.navigateTo({
+                  url: `/pages/adr/address/index?type=ji`,
+                });
+              }}>地址簿</Text>
             </View>
-            <View className="layer2"></View>
-            <View className="layer3s">
+            {/* <View className="layer2"></View> */}
+            <View className="layer3s layer2">
               <View className="main1">
                 <Text className="info2">收</Text>
               </View>
               <View className="main2">
                 <Text decode="true" className="txt2">
-                  收件人&nbsp;&nbsp;123****12313
+                  {receiveName === '' ? '寄件人信息' : `${receiveName}&nbsp;&nbsp;${receiveMobile}`}
                 </Text>
                 <Text className="paragraph1">
-                  广东省深圳市深圳市南山区留学生 创业大厦1304室
+                  {receiveAddress === '' ? '填写完整信息' : `${receiveAddress}`}
                 </Text>
               </View>
               <View className="main3"></View>
-              <Text className="info3">地址簿</Text>
+              <Text className="info3" onClick={() => {
+                Taro.navigateTo({
+                  url: `/pages/adr/address/index?type=shou`,
+                });
+              }}>地址簿</Text>
             </View>
           </View>
         </View>
@@ -174,11 +231,14 @@ const Index = (props) => {
                       textAlign: 'right'
                     }}>
                       {" "}
-                      {deliveryType
+                      {/* {deliveryType
                         ? deliveryType === 6
                           ? "特快零担"
                           : "特快重货"
-                        : "请填写(20KG以上物品)"}
+                        : "请填写(20KG以上物品)"} */}
+                      {goods
+                        ? goods
+                        : "请填写物品信息"}
                     </Text>
                     <Image src={Jiantou} className="jiantou"></Image>
                   </View>
@@ -319,15 +379,14 @@ const Index = (props) => {
         <View className="check">
 
           <Radio className='radio-list__radio' style={{
-            transform: 'scale(0.6)', display: 'flex',
-            flex: 1,
-            marginLeft: '-80rpx',
+            transform: 'scale(0.6)',
+            display: 'flex',
           }} color='#FF7464'
 
             onClick={(e) => setXieyi(!xieyi)}
             checked={xieyi}
-          ><Text>阅读并同意《货运服务协议》</Text></Radio>
-
+          ></Radio>
+          <Text className='text'>阅读并同意《货运服务协议》</Text>
         </View>
 
         <View className="foot">
@@ -346,9 +405,12 @@ const Index = (props) => {
                   {/* <Text className="info3">预估费用</Text> */}
                   <View className="block9">
                     <Text className="word14">¥</Text>
-                    <Text className="info4">23</Text>
+                    <Text className="info4">{price ? price : '--'}</Text>
                   </View>
-                  <View className="fangshi"><Text className="fangshi-text">寄付现结</Text></View>
+                  <View className="fangshi" onClick={(e) => {
+                    setFukuan(true)
+                    e.stopPropagation()
+                  }}><Text className="fangshi-text">寄付现结</Text></View>
                 </View>
                 <View className="layer9">
                   {/* <Image
@@ -370,7 +432,39 @@ const Index = (props) => {
             </View>
           </View>
         </View>
+
+        {
+          fukuan && <View className="mask">
+            <View className="modal">
+              <View className="m-head">
+                <Text className="m-tit">付款方式</Text>
+                <AtIcon value='close' size='16' color='#888888'></AtIcon>
+              </View>
+              <View className="m-cont">
+                <View className="selc avtive">
+                  <Text className="s-text a-text">寄付现结</Text>
+                </View>
+                {/* <View className="selc">
+               <Text className="s-text">到付</Text>
+             </View>
+             <View className="selc">
+               <Text className="s-text">寄付月结</Text>
+             </View> */}
+
+
+              </View>
+              <View className="m-foot" onClick={(e) => {
+                setFukuan(false)
+                e.stopPropagation()
+              }}>
+                <Text className="m-bt">确 定</Text>
+              </View>
+            </View>
+          </View>
+        }
       </StyledOverView>
+
+
       {/* 重货上楼 */}
       {/* <Modals
         title={'重货上楼'}

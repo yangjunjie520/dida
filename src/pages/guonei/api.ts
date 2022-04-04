@@ -40,3 +40,11 @@ export const WaybillSend = (data) =>
     method: "POST",
     data,
   });
+
+// 获取价格
+export const getPreOrderPrice = (data) =>
+  Request({
+    url: "/prod-api/api/getPreOrderPrice",
+    method: "POST",
+    data,
+  });
