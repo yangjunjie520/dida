@@ -106,31 +106,31 @@ const Index = (props) => {
       });
       return false;
     }
-    dispatch({ type: "order/payOrder", isId });
-    // const res = await ApiPays({
-    //   openid: openid,
-    //   totalFee: 0.01,
-    // });
+    // dispatch({ type: "order/payOrder", isId });
+    const res = await ApiPays({
+      openid: openid,
+      totalFee: 0.01,
+    });
 
-    // Taro.requestPayment({
-    //   ...res.message,
-    //   success: function (r) {
-    //     PaySearch({
-    //       outTradeNo: res?.message?.outTradeNo,
-    //     })
-    //       .then((res) => {
-    //         if (res) {
-    //           dispatch({ type: "order/payOrder" });
-    //         }
-    //       })
-    //       .catch((err) => {
-    //         console.log(err);
-    //       });
-    //   },
-    //   fail: function (err) {
-    //     console.log("支付失败---", res);
-    //   },
-    // });
+    Taro.requestPayment({
+      ...res.message,
+      success: function (r) {
+        PaySearch({
+          outTradeNo: res?.message?.outTradeNo,
+        })
+          .then((res) => {
+            if (res) {
+              dispatch({ type: "order/payOrder", isId });
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      },
+      fail: function (err) {
+        console.log("支付失败---", res);
+      },
+    });
   };
 
   console.log(price)

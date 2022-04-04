@@ -19,14 +19,12 @@ interface ModelType {
   };
 }
 
-const user = Taro.getStorageSync("user");
-
 const model: Model & ModelType = {
   namespace: "freight",
   state: {
     params: {
-      userId: user.userId,
-      openid: user.openid,
+      userId: "",
+      openid: "",
       deliveryId: "",
     },
     list: [],
@@ -58,6 +56,7 @@ const model: Model & ModelType = {
     },
 
     *clear({ deliveryId }, { put, select }) {
+      const user = Taro.getStorageSync("user");
       const res = yield CancelOrder({
         userId: user.userId,
         openid: user.openid,

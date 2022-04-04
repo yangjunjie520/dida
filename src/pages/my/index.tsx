@@ -33,6 +33,7 @@ const WayBill = (props) => {
     setCurrent(current);
   };
   const { overview, dispatch } = props;
+  const user = Taro.getStorageSync("user");
 
   useEffect(() => {
     // dispatch({ type: 'waybill/getDefault' })
@@ -51,8 +52,8 @@ const WayBill = (props) => {
         <Loading />
         <View className="layer9"></View>
         <View className="info">
-          <View className="photo"></View>
-          <Text className="phone">12321424324</Text>
+          <Image className="photo" src={user.avatarurl}></Image>
+          <Text className="phone">{user.nickname}</Text>
         </View>
 
         <View className="list">
@@ -86,15 +87,15 @@ const WayBill = (props) => {
             <Image src={Jiantou} className="right"></Image>
           </View>
 
-          <View className="item">
+          {/* <View className="item">
             <View className="left">
               <Image src={Icon_youhuiquan} className="icon"></Image>
               <Text className="text">我的优惠券</Text>
             </View>
             <Image src={Jiantou} className="right"></Image>
-          </View>
+          </View> */}
 
-          <View
+          {/* <View
             className="item"
             onClick={() => {
               Taro.navigateTo({
@@ -107,7 +108,7 @@ const WayBill = (props) => {
               <Text className="text">嘀嗒店长</Text>
             </View>
             <Image src={Jiantou} className="right"></Image>
-          </View>
+          </View> */}
 
           {/* <View className="item" onClick={() => {
             Taro.navigateTo({

@@ -26,7 +26,14 @@ const Index = (props) => {
 
   // }, [dispatch]);
   useDidShow(() => {
-    dispatch({ type: "freight/orderList" });
+
+    const user = Taro.getStorageSync("user");
+    dispatch({
+      type: "freight/changes", payload: {
+        userId: user.userId,
+        openid: user.openid,
+      }
+    });
   })
 
 

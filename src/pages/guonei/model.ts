@@ -18,14 +18,11 @@ interface ModelType {
   };
 }
 
-const user = Taro.getStorageSync("user");
-
 const model: Model & ModelType = {
   namespace: "order",
   state: {
     // 大票直达参数
     params: {
-      openid: user.openid,
       collectionMoney: 0,
       customerBoxCode: "",
       deliveryType: 6,
@@ -51,8 +48,7 @@ const model: Model & ModelType = {
       signReturn: 0,
       thirdNo: "",
       transType: 0,
-      userId: user.userId,
-      userName: user.userName,
+
       vloumHeight: 0,
       vloumLong: 0,
       vloumWidth: 0,
@@ -80,9 +76,21 @@ const model: Model & ModelType = {
         });
         return false;
       }
+      const user = Taro.getStorageSync("user");
       const res = isId
-        ? yield WaybillSend({ ...params, deliveryId: isId })
-        : yield SubmitOrder(params);
+        ? yield WaybillSend({
+            ...params,
+            deliveryId: isId,
+            userId: user.userId,
+            userName: user.userName,
+            openid: user.openid,
+          })
+        : yield SubmitOrder({
+            ...params,
+            userId: user.userId,
+            userName: user.userName,
+            openid: user.openid,
+          });
 
       if (res.code === 200) {
         console.log(res);
