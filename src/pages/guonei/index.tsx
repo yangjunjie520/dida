@@ -256,7 +256,7 @@ const Index = (props) => {
               <View className="main3"></View>
               <Text className="info3" onClick={(e) => {
                 Taro.navigateTo({
-                  url: `/pages/adr/address/index?shou=ji`,
+                  url: `/pages/adr/address/index?type=shou`,
                 });
                 e.stopPropagation()
               }}>地址簿</Text>

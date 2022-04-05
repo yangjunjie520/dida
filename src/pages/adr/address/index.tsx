@@ -72,6 +72,7 @@ const Address = (props) => {
   const handleItem = (item) => {
     if (!type) return
     const result = AddressParse.parse(item.address);
+
     if (type === 'ji') {
 
 
