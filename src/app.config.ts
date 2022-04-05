@@ -43,6 +43,10 @@ export default {
       root: "pages/huiyuan/",
       pages: ["index"],
     },
+    {
+      root: "pages/add/",
+      pages: ["index"],
+    },
   ],
   tabBar: {
     // custom: true,

@@ -79,7 +79,7 @@ const Index = (props) => {
 
         let parse_list = par.parse(res.data);
         console.log(parse_list)
-        if (parse_list?.name !== '') {
+        if (parse_list?.phone !== '') {
           setCopy(parse_list)
           setCopyShow(true)
         }
@@ -103,8 +103,11 @@ const Index = (props) => {
         receiveAddress,
         weight,
       }).then(res => {
-        console.log(res.data)
-        setPrice(res.data)
+
+        if (res.code === 200) {
+          setPrice(res.data)
+        }
+
 
       })
     }
@@ -197,7 +200,11 @@ const Index = (props) => {
       <StyledOverView>
         <View className="head">
           <View className="section3">
-            <View className="layer3s" style={{ marginBottom: '24rpx' }}>
+            <View className="layer3s" style={{ marginBottom: '24rpx' }} onClick={() => {
+              Taro.navigateTo({
+                url: `/pages/add/index?type=ji`,
+              });
+            }}>
               <View className="mod2">
                 <Text className="word2">寄</Text>
               </View>
@@ -210,14 +217,14 @@ const Index = (props) => {
                 </Text>
               </View>
               <View className="main3"></View>
-              <Text className="info3" onClick={() => {
-                Taro.navigateTo({
-                  url: `/pages/adr/address/index?type=ji`,
-                });
-              }}>地址簿</Text>
+              <Text className="info3" >地址簿</Text>
             </View>
             {/* <View className="layer2"></View> */}
-            <View className="layer3s layer2">
+            <View className="layer3s layer2" onClick={() => {
+              Taro.navigateTo({
+                url: `/pages/add/index?type=shou`,
+              });
+            }}>
               <View className="main1">
                 <Text className="info2">收</Text>
               </View>
@@ -230,11 +237,7 @@ const Index = (props) => {
                 </Text>
               </View>
               <View className="main3"></View>
-              <Text className="info3" onClick={() => {
-                Taro.navigateTo({
-                  url: `/pages/adr/address/index?type=shou`,
-                });
-              }}>地址簿</Text>
+              <Text className="info3">地址簿</Text>
             </View>
           </View>
         </View>

@@ -44,7 +44,7 @@ const WayBill = (props) => {
   const { overview, dispatch } = props;
 
   const [kf, setKf] = useState(false)
-  const [keImg,setKfImg] = useState(Erweima)
+  const [keImg, setKfImg] = useState(Erweima)
   useEffect(() => {
     // dispatch({ type: 'waybill/getDefault' })
     // // 监听时区变化
@@ -121,7 +121,7 @@ const WayBill = (props) => {
                   <Text lines="1" decode="true" className="word2">
                     20公斤以上，门到门一口价
                   </Text>
-                
+
                 </View>
               </View>
 
@@ -151,7 +151,7 @@ const WayBill = (props) => {
                   <Text lines="1" decode="true" className="word2">
                     200公斤或体积1立方以上
                   </Text>
-              
+
                 </View>
                 <View className="main6"></View>
               </View>
@@ -241,7 +241,7 @@ const WayBill = (props) => {
               </View>
               <View className="jf-center">
                 <Image src={PayTips} className="jf-tip"></Image> &nbsp;
-                <Text className="jf-tip-text">请勿线下付款给揽收人员，避免收费不标准及</Text>
+                <Text className="jf-tip-text">请勿线下付款给揽收人员，避免收费不标准及重复支付运费</Text>
               </View>
             </View>
 

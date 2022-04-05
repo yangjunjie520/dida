@@ -36,11 +36,18 @@ const model: Model & ModelType = {
       });
       let freight = yield select((state) => state.freight);
       const res = yield OrderList(freight.params);
-      if (res) {
+      if (res.code === 200) {
         Taro.hideLoading();
         yield put({
           type: "setList",
           payload: res.rows,
+        });
+      } else {
+        Taro.hideLoading();
+        Taro.showToast({
+          title: "接口失败，请联系客服",
+          icon: "none",
+          duration: 2000,
         });
       }
     },
