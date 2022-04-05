@@ -45,7 +45,7 @@ const model: Model & ModelType = {
       } else {
         Taro.hideLoading();
         Taro.showToast({
-          title: "接口失败，请联系客服",
+          title: `接口异常${res.msg}`,
           icon: "none",
           duration: 2000,
         });

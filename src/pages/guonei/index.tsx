@@ -106,6 +106,12 @@ const Index = (props) => {
 
         if (res.code === 200) {
           setPrice(res.data)
+        } else {
+          Taro.showToast({
+            title: `接口异常${res.msg}`,
+            icon: "none",
+            duration: 2000,
+          });
         }
 
 
@@ -138,32 +144,37 @@ const Index = (props) => {
       });
       return false;
     }
-    // dispatch({ type: "order/payOrder", isId });
-    const user = Taro.getStorageSync("user");
-    const res = await ApiPays({
-      openid: user.openid,
-      totalFee: price,
-    });
+    if (isId) {
+      dispatch({ type: "order/payOrder", isId });
+    } else {
+      const user = Taro.getStorageSync("user");
+      const res = await ApiPays({
+        openid: user.openid,
+        totalFee: price,
+      });
 
-    Taro.requestPayment({
-      ...res.message,
-      success: function (r) {
-        PaySearch({
-          outTradeNo: res?.message?.outTradeNo,
-        })
-          .then((res) => {
-            if (res) {
-              dispatch({ type: "order/payOrder", isId });
-            }
+      Taro.requestPayment({
+        ...res.message,
+        success: function (r) {
+          PaySearch({
+            outTradeNo: res?.message?.outTradeNo,
           })
-          .catch((err) => {
-            console.log(err);
-          });
-      },
-      fail: function (err) {
-        console.log("支付失败---", res);
-      },
-    });
+            .then((res) => {
+              if (res) {
+                dispatch({ type: "order/payOrder", isId });
+              }
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        },
+        fail: function (err) {
+          console.log("支付失败---", res);
+        },
+      });
+    }
+
+
   };
 
   const handelCopy = (type) => {
