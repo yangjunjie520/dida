@@ -211,10 +211,11 @@ const Index = (props) => {
       <StyledOverView>
         <View className="head">
           <View className="section3">
-            <View className="layer3s" style={{ marginBottom: '24rpx' }} onClick={() => {
+            <View className="layer3s" style={{ marginBottom: '24rpx' }} onClick={(e) => {
               Taro.navigateTo({
                 url: `/pages/add/index?type=ji`,
               });
+              e.stopPropagation()
             }}>
               <View className="mod2">
                 <Text className="word2">寄</Text>
@@ -228,7 +229,12 @@ const Index = (props) => {
                 </Text>
               </View>
               <View className="main3"></View>
-              <Text className="info3" >地址簿</Text>
+              <Text className="info3" onClick={(e) => {
+                Taro.navigateTo({
+                  url: `/pages/adr/address/index?type=ji`,
+                });
+                e.stopPropagation()
+              }}>地址簿</Text>
             </View>
             {/* <View className="layer2"></View> */}
             <View className="layer3s layer2" onClick={() => {
@@ -248,7 +254,12 @@ const Index = (props) => {
                 </Text>
               </View>
               <View className="main3"></View>
-              <Text className="info3">地址簿</Text>
+              <Text className="info3" onClick={(e) => {
+                Taro.navigateTo({
+                  url: `/pages/adr/address/index?shou=ji`,
+                });
+                e.stopPropagation()
+              }}>地址簿</Text>
             </View>
           </View>
         </View>

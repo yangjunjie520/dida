@@ -113,7 +113,7 @@ const Address = (props) => {
       <View className="mod2">
         <View className="tab">
           <Text lines="1" className="word2">
-            寄件人地址簿
+            地址簿
           </Text>
 
           <View className="active"></View>
