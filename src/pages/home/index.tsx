@@ -244,7 +244,6 @@ const WayBill = (props) => {
                 <Text className="jf-tip-text">请勿线下付款给揽收人员，避免收费不标准及重复支付运费</Text>
               </View>
             </View>
-
           </View>
 
           <View className="kf-tu" onClick={e => {
