@@ -27,8 +27,7 @@ import Lvse from "../../static/images/home/linian@3x(1).png"
 import Yes from "../../static/images/home/login_yes@3x.png"
 import PayTips from "../../static/images/home/pay_tips@2x.png"
 import Erweima from "../../static/images/home/erweima.jpeg"
-
-
+import JizhuanxianTips from "../../static/images/home/JizhuanxianTips.jpg"
 
 
 const { safeArea } = Taro.getSystemInfoSync();
@@ -45,7 +44,7 @@ const WayBill = (props) => {
   const { overview, dispatch } = props;
 
   const [kf, setKf] = useState(false)
-
+  const [keImg,setKfImg] = useState(Erweima)
   useEffect(() => {
     // dispatch({ type: 'waybill/getDefault' })
     // // 监听时区变化
@@ -100,7 +99,10 @@ const WayBill = (props) => {
             <View className="i-select">
               <View
                 className="layer13"
-                onClick={() => {
+                onClick={(e) => {
+                  setKfImg(Erweima)
+                  setKf(true)
+                  e.stopPropagation()
                   // Taro.navigateTo({
                   //   url: "/pages/guonei/index",
                   // });
@@ -119,18 +121,16 @@ const WayBill = (props) => {
                   <Text lines="1" decode="true" className="word2">
                     20公斤以上，门到门一口价
                   </Text>
-                  {/* <Text lines="1" className="info4">
-                寄大件
-              </Text>
-              <Text lines="1" className="word15">
-                20公斤以上，门到门一口价
-              </Text> */}
+                
                 </View>
               </View>
 
               <View
                 className="layer14"
-                onClick={() => {
+                onClick={(e) => {
+                  setKfImg(JizhuanxianTips)
+                  setKf(true)
+                  e.stopPropagation()
                   // Taro.navigateTo({
                   //   url: "/pages/guonei/index",
                   // });
@@ -151,12 +151,7 @@ const WayBill = (props) => {
                   <Text lines="1" decode="true" className="word2">
                     200公斤或体积1立方以上
                   </Text>
-                  {/* <Text lines="1" className="word16">
-                寄专线
-              </Text>
-              <Text lines="1" decode="true" className="txt3">
-                200公斤或体积1立方以上
-              </Text> */}
+              
                 </View>
                 <View className="main6"></View>
               </View>
@@ -253,6 +248,7 @@ const WayBill = (props) => {
           </View>
 
           <View className="kf-tu" onClick={e => {
+            setKfImg(Erweima)
             setKf(true)
             e.stopPropagation()
           }}>
@@ -282,7 +278,7 @@ const WayBill = (props) => {
 
 
 
-            <Image src={Erweima} show-menu-by-longpress mode="aspectFit" className="img"></Image>
+            <Image src={keImg} show-menu-by-longpress mode="aspectFit" className="img"></Image>
 
 
 
