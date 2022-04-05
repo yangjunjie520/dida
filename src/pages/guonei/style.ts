@@ -864,6 +864,84 @@ export const StyledOverView = styled(View)`
     align-items: center;
     justify-content: center;
   }
+
+  .copy-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .copy {
+    width: 616rpx;
+    height: 420rpx;
+    background: #ffffff;
+    border-radius: 12rpx;
+    /* padding: 0 34rpx; */
+    .m-head {
+      padding: 32rpx 34rpx 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .c-icon {
+      position: absolute;
+      top: 41rpx;
+      right: 32rpx;
+    }
+    .copy-cont {
+      padding: 0 34rpx;
+    }
+    .c-item {
+      margin-top: 12rpx;
+      display: flex;
+    }
+    .c-left {
+      width: 78rpx;
+      height: 44rpx;
+      font-size: 26rpx;
+      font-family: PingFangSC-Regular, PingFang SC;
+      font-weight: 400;
+      color: #888888;
+    }
+    .c-right {
+      flex: 1;
+      min-height: 44rpx;
+      font-size: 26rpx;
+      font-family: PingFangSC-Regular, PingFang SC;
+      font-weight: 400;
+      color: #333333;
+      line-height: 44rpx;
+    }
+
+    .c-foot {
+      margin-top: 40rpx;
+      border-top: 2rpx solid #f3f3f3;
+      height: 80rpx;
+      display: flex;
+      box-sizing: border-box;
+    }
+    .send,
+    .rev {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .send {
+      border-right: 2rpx solid #f3f3f3;
+      box-sizing: border-box;
+    }
+    .s-text,
+    .r-text {
+      font-size: 30rpx;
+      font-family: PingFangSC-Regular, PingFang SC;
+      font-weight: 400;
+      color: #323546;
+    }
+    .r-text {
+      color: #ff7201;
+    }
+  }
 `;
 
 export const DialogView = styled.view<{ height: string }>`

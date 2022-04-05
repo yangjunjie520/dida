@@ -16,12 +16,12 @@ import { connect } from "react-redux";
 import { StyledOverView } from "./style";
 import Modals from "./modal";
 import AddressParse from 'address-parse';
-import { AtIcon } from 'taro-ui'
-
+import { AtModal, AtModalHeader, AtModalContent, AtModalAction, AtIcon } from "taro-ui"
 
 import Jiantou from "../../static/images/my/jiantou.png";
 import Warning_circle from "../../static/images/warning-circle.png";
 import { ApiPays, PaySearch, getPreOrderPrice } from "./api";
+const par = require('../../utils/addressparse.js')
 
 const { safeArea } = Taro.getSystemInfoSync();
 
@@ -39,6 +39,20 @@ const Index = (props) => {
   const setCurrentSwiper = (current) => {
     setCurrent(current);
   };
+  const [copy, setCopy] = useState({
+    addr: "parse_list",
+    area: "",
+    city: "",
+    detail: "",
+    mobile: "",
+    name: "",
+    phone: "",
+    province: "",
+    result: undefined,
+    zip_code: "",
+  })
+
+  const [copyShow, setCopyShow] = useState(false)
 
   const { params, dispatch } = props;
 
@@ -59,6 +73,21 @@ const Index = (props) => {
     weight
   } = params;
 
+  useEffect(() => {
+    Taro.getClipboardData({
+      success: function (res) {
+
+        let parse_list = par.parse(res.data);
+        console.log(parse_list)
+        if (parse_list?.name !== '') {
+          setCopy(parse_list)
+          setCopyShow(true)
+        }
+
+      }
+    })
+  }, [])
+
   // 对应 onShow
   useDidShow(() => {
 
@@ -66,7 +95,7 @@ const Index = (props) => {
       const user = Taro.getStorageSync("user");
       getPreOrderPrice({
         userId: user.userId,
-        openid,
+        openid: user.openid,
         sendProvinceCode,
         senderAddress,
         senderMobile,
@@ -107,9 +136,10 @@ const Index = (props) => {
       return false;
     }
     // dispatch({ type: "order/payOrder", isId });
+    const user = Taro.getStorageSync("user");
     const res = await ApiPays({
-      openid: openid,
-      totalFee: 0.01,
+      openid: user.openid,
+      totalFee: price,
     });
 
     Taro.requestPayment({
@@ -133,7 +163,34 @@ const Index = (props) => {
     });
   };
 
-  console.log(price)
+  const handelCopy = (type) => {
+
+    if (type === 'ji') {
+      dispatch({
+        type: "order/save",
+        payload: {
+          senderAddress: copy.province + copy.city + copy.area + copy.addr,
+          senderMobile: copy.phone,
+          senderName: copy.name,
+          sendProvinceCode: copy.zip_code.substr(0, 2) + "0000",
+        },
+      });
+    } else if (type === 'shou') {
+      dispatch({
+        type: "order/save",
+        payload: {
+          receiveAddress: copy.province + copy.city + copy.area + copy.addr,
+          receiveMobile: copy.phone,
+          receiveName: copy.name,
+          receiveProvinceCode: copy.zip_code.substr(0, 2) + "0000",
+        },
+      });
+    }
+
+    setCopyShow(false)
+  }
+
+
 
   return (
     <>
@@ -471,6 +528,43 @@ const Index = (props) => {
                 e.stopPropagation()
               }}>
                 <Text className="m-bt">确 定</Text>
+              </View>
+            </View>
+          </View>
+        }
+
+        {
+          copyShow && <View className="mask copy-box">
+            <View className="copy">
+              <View className="m-head">
+                <Text className="m-tit">是否使用剪切板中地址</Text>
+                <AtIcon value='close' size='16' color='#888888' className="c-icon" onClick={() => setCopyShow(false)}></AtIcon>
+              </View>
+              <View className="copy-cont">
+                <View className="c-item">
+                  <Text className="c-left">姓名：</Text>
+                  <Text className="c-right">{copy.name}</Text>
+                </View>
+                <View className="c-item">
+                  <Text className="c-left">电话：</Text>
+                  <Text className="c-right">{copy.phone}</Text>
+                </View>
+                <View className="c-item">
+                  <Text className="c-left">地址：</Text>
+                  <Text className="c-right" style={{ height: '88rpx' }}>{copy.province}{copy.city}{copy.area}{copy.addr}</Text>
+                </View>
+
+
+              </View>
+              <View className="c-foot">
+                <View className="send" onClick={(e) => {
+                  handelCopy('ji')
+                  e.stopPropagation()
+                }}><Text className="s-text">寄件地址</Text></View>
+                <View className="rev" onClick={(e) => {
+                  handelCopy('shou')
+                  e.stopPropagation()
+                }}><Text className="r-text">收件地址</Text></View>
               </View>
             </View>
           </View>

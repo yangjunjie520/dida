@@ -9,8 +9,6 @@ import {
 } from "@tarojs/components";
 import Taro, { useRouter } from "@tarojs/taro";
 import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
-import { AtToast, AtIcon, AtInput } from "taro-ui";
 import AddressPicker from "../../../../components/addressPicker";
 import { insertWxAdd, updataWxAdd } from '../api'
 
@@ -18,6 +16,7 @@ import { StyledOverview } from "./style";
 import Icon_pic from "../../../../static/images/my/icon_pic.png";
 import Icon_dizhibu from "../../../../static/images/my/icon_dizhibu.png";
 import AddressParse from "address-parse";
+const par = require('../../../../utils/addressparse.js')
 
 const { safeArea } = Taro.getSystemInfoSync();
 
@@ -35,6 +34,7 @@ const Address = (props) => {
   const [del, setDel] = useState('')
   const [info, setInfo] = useState('')
   const [gongsi, setGs] = useState('')
+  const [val, setVal] = useState('')
 
   const { overview, dispatch } = props;
   const router = useRouter();
@@ -116,20 +116,37 @@ const Address = (props) => {
     console.log(res)
   }
 
+  const handleInp = () => {
+
+
+    let parse_list = par.parse(val);
+
+    setParams({
+      ...params,
+
+      wxPhone: parse_list?.phone,
+      wxName: parse_list?.name,
+    })
+    setInfo(`${parse_list?.province}${parse_list?.city}${parse_list?.area}`)
+    setDel(parse_list?.addr)
+
+  }
   return (
     <StyledOverview>
-      {/* <View className="layer2">
+      <View className="layer2">
         <View className="block1">
-          <Text lines="1" className="word3">粘贴地址信息，自动拆分姓名电话和地址</Text>
+          <Input lines="1" className="word3" value={val} placeholder="粘贴地址信息，自动拆分姓名电话和地址" onInput={(e) => {
+            setVal(e.detail.value)
+          }}></Input>
         </View>
         <View className="block2">
           <Image src={Icon_pic} className="label3"></Image>
           <Text lines="1" className="word4">图片识别</Text>
-          <View className="section2">
+          <View className="section2" onClick={handleInp}>
             <Text lines="1" className="word5">识别</Text>
           </View>
         </View>
-      </View> */}
+      </View>
 
       <View className="layer3">
         <View className="layer4">

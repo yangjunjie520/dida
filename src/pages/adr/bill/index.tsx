@@ -31,7 +31,7 @@ const WayBill = props => {
         }).then(res => {
 
             if (res.code === 200) {
-                setList(res.rows)
+                setList(res.data)
             } else {
                 Taro.showToast({
                     title: `接口异常${res.msg}`,
@@ -79,26 +79,7 @@ const WayBill = props => {
                     })
                 }
 
-                {/* <View className="item">
-                    <View className="left">
-                        <Text className="tit">输入文本输入文本输入文本</Text>
-                        <Text className="riqi">9月14日 08:09</Text>
-                    </View>
-                    <View className="qian">
-                        <Text>-10.00</Text>
-                    </View>
-                    <View className="borderb"></View>
-                </View>
-                <View className="item radus-b">
-                    <View className="left">
-                        <Text className="tit">输入文本输入文本输入文本</Text>
-                        <Text className="riqi">9月14日 08:09</Text>
-                    </View>
-                    <View className="qian">
-                        <Text>-10.00</Text>
-                    </View>
 
-                </View> */}
             </View>
 
             {/* <View className="mask">
