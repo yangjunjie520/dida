@@ -46,6 +46,11 @@ export default (
   }
 
   const url = `${baseUrl}${options.url}`.replace(/\s+/g, "");
+  Taro.showToast({
+    title: `开始请求${url}`,
+    icon: "none",
+    duration: 2000,
+  });
   return Taro.request({
     url,
     data: {
@@ -58,10 +63,18 @@ export default (
     },
     method: options.method.toUpperCase(),
   }).then((res) => {
-    // Taro.hideLoading();
+    Taro.hideLoading();
     if (res && (res.code === 200 || res.success)) {
+      
+      Taro.showToast({
+        title: `${url}请求结束`,
+        icon: "none",
+        duration: 2000,
+      });
       return res;
+      
     } else {
+      Taro.hideLoading();
       Taro.showToast({
         title: res.msg,
         icon: "none",
@@ -85,5 +98,11 @@ export default (
     //   icon: 'none',
     //   duration: 3000,
     // })
-  });
+  }).catch(error=>{
+    Taro.showToast({
+      title: JSON.stringify(error),
+      icon: "none",
+      duration: 5000,
+    });
+  })
 };
