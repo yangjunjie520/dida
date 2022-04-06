@@ -31,23 +31,37 @@ const model: Model & ModelType = {
   },
   effects: {
     *orderList({}, { put, select }) {
-      Taro.showLoading({
-        title: "加载中",
-      });
-      let freight = yield select((state) => state.freight);
-      const res = yield OrderList(freight.params);
-      if (res.code === 200) {
-        Taro.hideLoading();
-        yield put({
-          type: "setList",
-          payload: res.rows,
+      try {
+        Taro.showLoading({
+          title: "加载中",
         });
-      } else {
-        Taro.hideLoading();
-        Taro.showToast({
-          title: `接口异常${res.msg}`,
-          icon: "none",
-          duration: 2000,
+        let freight = yield select((state) => state.freight);
+        const res = yield OrderList(freight.params);
+        if (res.code === 200) {
+          Taro.hideLoading();
+          yield put({
+            type: "setList",
+            payload: res.rows,
+          });
+        } else {
+          Taro.hideLoading();
+          Taro.showToast({
+            title: `接口异常${res.msg}`,
+            icon: "none",
+            duration: 2000,
+          });
+        }
+      } catch (error) {
+        Taro.showModal({
+          title: "错误",
+          content: error,
+          success: function(res) {
+            if (res.confirm) {
+              console.log("用户点击确定");
+            } else if (res.cancel) {
+              console.log("用户点击取消");
+            }
+          },
         });
       }
     },
