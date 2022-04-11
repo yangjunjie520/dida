@@ -21,7 +21,7 @@ import { AtModal, AtModalHeader, AtModalContent, AtModalAction, AtIcon } from "t
 import Jiantou from "../../static/images/my/jiantou.png";
 import Warning_circle from "../../static/images/warning-circle.png";
 import { ApiPays, PaySearch, getPreOrderPrice } from "./api";
-const par = require('../../utils/addressparse.js')
+
 
 const { safeArea } = Taro.getSystemInfoSync();
 
@@ -40,15 +40,14 @@ const Index = (props) => {
     setCurrent(current);
   };
   const [copy, setCopy] = useState({
-    addr: "parse_list",
     area: "",
     city: "",
-    detail: "",
+    code: "",
+    details: "",
     mobile: "",
     name: "",
     phone: "",
     province: "",
-    result: undefined,
     zip_code: "",
   })
 
@@ -76,11 +75,9 @@ const Index = (props) => {
   useEffect(() => {
     Taro.getClipboardData({
       success: function (res) {
-
-        let parse_list = par.parse(res.data);
-        console.log(parse_list)
-        if (parse_list?.phone !== '') {
-          setCopy(parse_list)
+        let parse_list = AddressParse.parse(res.data);
+        if (parse_list[0]?.phone !== '') {
+          setCopy(parse_list[0])
           setCopyShow(true)
         }
 
@@ -183,20 +180,20 @@ const Index = (props) => {
       dispatch({
         type: "order/save",
         payload: {
-          senderAddress: copy.province + copy.city + copy.area + copy.addr,
+          senderAddress: copy.province + copy.city + copy.area + copy.details,
           senderMobile: copy.phone,
           senderName: copy.name,
-          sendProvinceCode: copy.zip_code.substr(0, 2) + "0000",
+          sendProvinceCode: copy.code.substr(0, 2) + "0000",
         },
       });
     } else if (type === 'shou') {
       dispatch({
         type: "order/save",
         payload: {
-          receiveAddress: copy.province + copy.city + copy.area + copy.addr,
+          receiveAddress: copy.province + copy.city + copy.area + copy.details,
           receiveMobile: copy.phone,
           receiveName: copy.name,
-          receiveProvinceCode: copy.zip_code.substr(0, 2) + "0000",
+          receiveProvinceCode: copy.code.substr(0, 2) + "0000",
         },
       });
     }

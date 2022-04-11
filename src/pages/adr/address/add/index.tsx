@@ -16,7 +16,7 @@ import { StyledOverview } from "./style";
 import Icon_pic from "../../../../static/images/my/icon_pic.png";
 import Icon_dizhibu from "../../../../static/images/my/icon_dizhibu.png";
 import AddressParse from "address-parse";
-const par = require('../../../../utils/addressparse.js')
+
 
 const { safeArea } = Taro.getSystemInfoSync();
 
@@ -41,7 +41,7 @@ const Address = (props) => {
   const id = router.params.id
   useEffect(() => {
 
-
+    console.log(AddressParse.parse('福建省福州市福清市石竹街道义明综合楼3F，15000000000，asseek'))
     if (id) {
 
       const addres = Taro.getStorageSync("addres");
@@ -119,16 +119,15 @@ const Address = (props) => {
   const handleInp = () => {
 
 
-    let parse_list = par.parse(val);
+    let parse_list = AddressParse.parse(val);
 
     setParams({
       ...params,
-
-      wxPhone: parse_list?.phone,
-      wxName: parse_list?.name,
+      wxPhone: parse_list[0]?.mobile,
+      wxName: parse_list[0]?.name,
     })
-    setInfo(`${parse_list?.province}${parse_list?.city}${parse_list?.area}`)
-    setDel(parse_list?.addr)
+    setInfo(`${parse_list[0]?.province}${parse_list[0]?.city}${parse_list[0]?.area}`)
+    setDel(parse_list[0]?.details)
 
   }
   return (
