@@ -187,7 +187,7 @@ const Address = (props) => {
           <View className="item" onClick={() => setPickerShow(true)}>
             <View className="group1-0">
               <View className="mod2-0">
-                <Text className="input">{info === '' ? '城市/区域' : info}</Text>
+                <Text className={info === '' ? "input none" : "input"}>{info === '' ? '城市/区域' : info}</Text>
 
                 {/* <View className="mod4-0"></View> */}
               </View>
@@ -253,7 +253,7 @@ const Address = (props) => {
         pickerShow={pickerShow}
         onHandleToggleShow={onHandleToggleShow}
       ></AddressPicker>
-    </StyledOverview>
+    </StyledOverview >
   );
 };
 

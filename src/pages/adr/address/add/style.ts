@@ -1,5 +1,5 @@
-import { styled } from 'linaria/react'
-import { View } from '@tarojs/components'
+import { styled } from "linaria/react";
+import { View } from "@tarojs/components";
 
 export const StyledOverview = styled(View)`
   background: #f7f7f7;
@@ -34,7 +34,7 @@ export const StyledOverview = styled(View)`
     height: 44rpx;
     display: block;
     overflow-wrap: break-word;
-    color: rgba(187, 187, 187, 1);
+    color: rgb(0, 0, 0);
     font-size: 28rpx;
     font-family: PingFangSC-Regular;
     white-space: nowrap;
@@ -129,7 +129,7 @@ export const StyledOverview = styled(View)`
     height: 50rpx;
     display: block;
     overflow-wrap: break-word;
-    color: rgba(50, 53, 70, 1);
+    color: rgb(0, 0, 0);
     font-size: 36rpx;
     font-family: PingFangSC-Medium;
     white-space: nowrap;
@@ -228,7 +228,7 @@ export const StyledOverview = styled(View)`
     height: 40rpx;
     display: block;
     overflow-wrap: break-word;
-    color: rgba(187, 187, 187, 1);
+    color: rgb(0, 0, 0);
     font-size: 28rpx;
     font-family: PingFangSC-Regular;
     white-space: nowrap;
@@ -241,7 +241,7 @@ export const StyledOverview = styled(View)`
     height: 40rpx;
     display: block;
     overflow-wrap: break-word;
-    color: rgba(187, 187, 187, 1);
+    color: rgb(0, 0, 0);
     font-size: 28rpx;
     font-family: PingFangSC-Regular;
     white-space: nowrap;
@@ -265,8 +265,12 @@ export const StyledOverview = styled(View)`
     font-size: 28rpx;
     font-family: PingFangSC-Regular, PingFang SC;
     font-weight: 400;
-    color: #bbbbbb;
+
+    color: rgb(0, 0, 0);
     line-height: 40rpx;
+  }
+  .none {
+    color: gray;
   }
 
   .layer5 {
@@ -295,10 +299,10 @@ export const StyledOverview = styled(View)`
     line-height: 42rpx;
     text-align: left;
   }
-`
+`;
 
 export const DialogView = styled.view<{ height: string }>`
   .at-float-layout__container {
-    height: ${props => props.height || 200}px;
+    height: ${(props) => props.height || 200}px;
   }
-`
+`;

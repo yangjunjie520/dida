@@ -145,18 +145,20 @@ export const StyledOverview = styled(View)`
   }
   .word6-0 {
     z-index: 56;
-
     height: 40rpx;
-    display: block;
-    overflow-wrap: break-word;
     color: rgba(153, 153, 153, 1);
     font-size: 28rpx;
     font-family: PingFangSC-Regular;
-    white-space: nowrap;
     line-height: 40rpx;
     text-align: left;
     align-self: flex-start;
     margin: 6rpx 0 0 2rpx;
+    display: -webkit-box; /*设置为弹性盒子*/
+    overflow: hidden; /*超出隐藏*/
+    text-overflow: ellipsis; /*显示省略号*/
+    -webkit-line-clamp: 1; /*多少行后显示省略号，这里设置为第一行超出后显示省略号*/
+    word-break: break-all; /*强制英文单词自动换行,可要可不要*/
+    -webkit-box-orient: vertical; /* 从上到下垂直排列子元素*/
   }
   .main2-0 {
     z-index: 54;
