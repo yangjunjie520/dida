@@ -46,11 +46,11 @@ export default (
   }
 
   const url = `${baseUrl}${options.url}`.replace(/\s+/g, "");
-  Taro.showToast({
-    title: `开始请求${url}`,
-    icon: "none",
-    duration: 2000,
-  });
+  // Taro.showToast({
+  //   title: `开始请求${url}`,
+  //   icon: "none",
+  //   duration: 2000,
+  // });
   return Taro.request({
     url,
     data: {
@@ -66,11 +66,11 @@ export default (
     Taro.hideLoading();
     if (res && (res.code === 200 || res.success)) {
       
-      Taro.showToast({
-        title: `${url}请求结束`,
-        icon: "none",
-        duration: 2000,
-      });
+      // Taro.showToast({
+      //   title: `${url}请求结束`,
+      //   icon: "none",
+      //   duration: 2000,
+      // });
       return res;
       
     } else {

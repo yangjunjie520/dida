@@ -68,13 +68,12 @@ export const StyledOverview = styled(View)`
     border-radius: 38rpx;
     background-color: rgba(255, 255, 255, 1);
     margin-top: 46rpx;
-
     justify-content: center;
     align-items: flex-start;
     padding: 0 24rpx;
     position: relative;
     margin-left: 0;
-
+    font-size:28rpx;
     .at-input__container {
       height: 76rpx;
     }

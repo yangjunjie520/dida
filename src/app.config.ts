@@ -62,7 +62,7 @@ export default {
         selectedIconPath: "static/images/home/home_yes.png",
       },
       {
-        text: "查货运",
+        text: "查件",
         pagePath: "pages/freight/index",
         iconPath: "static/images/home/chajian_not.png",
         selectedIconPath: "static/images/home/chajian_yes.png",

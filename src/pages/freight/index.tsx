@@ -1,4 +1,4 @@
-import { Text, View, Image, ScrollView } from "@tarojs/components";
+import { Text, View, Image, ScrollView,Input } from "@tarojs/components";
 import Taro, { useDidShow } from "@tarojs/taro";
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
@@ -76,7 +76,7 @@ const Index = (props) => {
   }
   const getInfo = (e) => {
     console.log(e)
-    dispatch({ type: "freight/changes", payload: { deliveryId: e } });
+    dispatch({ type: "freight/changes", payload: { deliveryId: e.detail.value } });
 
   }
   const onDebounceKeyUpClick = e => {
@@ -100,17 +100,17 @@ const Index = (props) => {
             </Text>
           </View>
           <View>
-            <AtInput
+            <Input
               className="layer3"
               placeholder="运单号查询"
               name="order"
 
-              onChange={(e) => {
+              onInput={(e) => {
 
                 onDebounceKeyUpClick(e)
               }}
               value={params.deliveryId}
-            ></AtInput>
+            ></Input>
             <View className="outer1"></View>
           </View>
         </View>

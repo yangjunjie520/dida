@@ -45,6 +45,16 @@ const WayBill = (props) => {
 
   const [kf, setKf] = useState(false)
   const [keImg, setKfImg] = useState(Erweima)
+
+  const onShareAppMessage = () =>
+     {
+       console.log("执行了吗");
+       
+         return{
+             title:'点击转发后,页面文章的标题',
+         }
+     }
+
   useEffect(() => {
     // dispatch({ type: 'waybill/getDefault' })
     // // 监听时区变化
