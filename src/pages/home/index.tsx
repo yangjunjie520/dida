@@ -1,6 +1,5 @@
-import { ConnectState as FilterConnectState } from "@/models/filter";
 import { Text, View, Image, ScrollView } from "@tarojs/components";
-import Taro from "@tarojs/taro";
+import Taro, { useShareAppMessage } from "@tarojs/taro";
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { AtToast } from "taro-ui";
@@ -46,25 +45,18 @@ const WayBill = (props) => {
   const [kf, setKf] = useState(false)
   const [keImg, setKfImg] = useState(Erweima)
 
-  const onShareAppMessage = () =>
-     {
-       console.log("执行了吗");
-       
-         return{
-             title:'点击转发后,页面文章的标题',
-         }
-     }
+  useShareAppMessage(res => {
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(res.target)
+    }
+    return {
+      title: '滴答货运',
+      path: 'pages/home/index'
+    }
+  })
 
-  useEffect(() => {
-    // dispatch({ type: 'waybill/getDefault' })
-    // // 监听时区变化
-    // Taro.eventCenter.on('timeZoneOnChange', arg => {
-    //   dispatch({ type: 'waybill/getDefault' })
-    // })
-    // Taro.showShareMenu({
-    //   withShareTicket: true,
-    // })
-  }, [dispatch]);
+
 
   const scanCode = () => {
     Taro.scanCode({
