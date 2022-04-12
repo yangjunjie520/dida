@@ -83,6 +83,7 @@ const Address = (props) => {
           senderMobile: item.wxPhone,
           senderName: item.wxName,
           sendProvinceCode: result[0].code.substr(0, 2) + "0000",
+          sendCityCode: `${result[0].code.slice(0, 4)}00`
         },
       });
     } else if (type === 'shou') {
@@ -93,6 +94,7 @@ const Address = (props) => {
           receiveMobile: item.wxPhone,
           receiveName: item.wxName,
           receiveProvinceCode: result[0].code.substr(0, 2) + "0000",
+          receiveCityCode: `${result[0].code.slice(0, 4)}00`
         },
       });
     }

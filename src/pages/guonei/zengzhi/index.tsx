@@ -23,15 +23,17 @@ const Index = (props) => {
   const [current, setCurrent] = useState(0);
   const { params, dispatch } = props;
 
-  const { collectionMoney } = params;
+  const { collectionMoney, isClosed } = params;
 
   const [money, setMoney] = useState(collectionMoney);
+  const [isClose, setIsClose] = useState(isClosed === 1);
 
   const handleClick = () => {
     dispatch({
       type: "order/save",
       payload: {
         collectionMoney: money,
+        isClosed: isClose ? 1 : 0
       },
     });
 
@@ -171,7 +173,13 @@ const Index = (props) => {
               <Switch color="#ff7201" style={{
                 transform: 'scale(0.8)'
 
-              }} />
+              }}
+                onChange={(e) => {
+
+                  setIsClose(e.detail.value)
+                }}
+                checked={isClosed === 1}
+              />
               {/* <View className="section1"></View> */}
             </View>
             <Text className="infoBox4">
@@ -191,6 +199,7 @@ const Index = (props) => {
                 onInput={(e) => {
                   setMoney(e.detail.value);
                 }}
+                disabled={!isClose}
               />
             </View>
           </View>

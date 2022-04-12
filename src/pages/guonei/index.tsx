@@ -69,7 +69,9 @@ const Index = (props) => {
     receiveName,
     receiveProvinceCode,
     goods,
-    weight
+    weight,
+    sendCityCode,
+    receiveCityCode,
   } = params;
 
   useEffect(() => {
@@ -99,6 +101,8 @@ const Index = (props) => {
         receiveProvinceCode,
         receiveAddress,
         weight,
+        sendCityCode,
+        receiveCityCode,
       }).then(res => {
 
         if (res.code === 200) {
@@ -184,6 +188,7 @@ const Index = (props) => {
           senderMobile: copy.phone,
           senderName: copy.name,
           sendProvinceCode: copy.code.substr(0, 2) + "0000",
+          sendCityCode: `${copy.code.slice(0, 4)}00`
         },
       });
     } else if (type === 'shou') {
@@ -194,6 +199,7 @@ const Index = (props) => {
           receiveMobile: copy.phone,
           receiveName: copy.name,
           receiveProvinceCode: copy.code.substr(0, 2) + "0000",
+          receiveCityCode: `${copy.code.slice(0, 4)}00`
         },
       });
     }
@@ -529,12 +535,24 @@ const Index = (props) => {
               <View className="m-cont">
                 <View className={`selc ${pays === 1 ? 'avtive' : ''}`} onClick={(e) => {
                   setPya(1)
+                  dispatch({
+                    type: "order/save",
+                    payload: {
+                      isPayFor: 1,
+                    },
+                  });
                   e.stopPropagation()
                 }}>
                   <Text className={`s-text ${pays === 1 ? 'a-text' : ''}`}>货到付款</Text>
                 </View>
                 <View className={`selc ${pays === 2 ? 'avtive' : ''}`} onClick={(e) => {
                   setPya(2)
+                  dispatch({
+                    type: "order/save",
+                    payload: {
+                      isPayFor: 0,
+                    },
+                  });
                   e.stopPropagation()
                 }}>
                   <Text className={`s-text ${pays === 2 ? 'a-text' : ''}`}>寄付现结</Text>
