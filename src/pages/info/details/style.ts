@@ -669,7 +669,7 @@ export const StyledOverView = styled(View)`
   /* 详细信息 */
   .bd2 {
     z-index: 37;
-    height: 1220rpx;
+    /* height: 1220rpx; */
     border-radius: 20rpx;
     background-color: rgba(255, 255, 255, 1);
     align-self: center;
@@ -677,7 +677,7 @@ export const StyledOverView = styled(View)`
     width: 702rpx;
     justify-content: center;
     align-items: flex-start;
-    padding-left: 28rpx;
+
     display: flex;
     flex-direction: column;
     margin: 16rpx auto 128rpx;
@@ -685,7 +685,7 @@ export const StyledOverView = styled(View)`
   .block2 {
     z-index: auto;
     width: 626rpx;
-    height: 1140rpx;
+    padding: 32rpx 0 32rpx 28rpx;
     display: flex;
     flex-direction: column;
   }

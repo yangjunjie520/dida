@@ -79,6 +79,68 @@ const WayBillDatails = (props) => {
       });
   };
 
+
+  const promiseTimeType = (type) => {
+    switch (type) {
+      case 0:
+        return '汽车配件'
+      case 1:
+        return '特惠送'
+      case 2:
+        return '特快送'
+      case 4:
+        return '城际闪送'
+      case 7:
+        return '微小件'
+      case 8:
+        return '生鲜专送'
+      case 16:
+        return '生鲜特快'
+      case 17:
+        return '生鲜特惠'
+      case 20:
+        return '函数达'
+      case 21:
+        return '特惠包裹'
+      case 24:
+        return '特惠小件'
+      case 26:
+        return '冷链专送'
+      default:
+        return '-'
+    }
+  }
+
+  const orderStatus = (type) => {
+    switch (type) {
+
+      case '1':
+        return '待取件'
+      case '2':
+        return '运输中'
+      case '3':
+        return '已签收'
+      case '4':
+        return '拒收退货'
+      case '5':
+        return '拦截'
+      case '6':
+        return '异常'
+      case '7':
+        return '异常已处理'
+      case '10':
+        return '已取消'
+      case '11':
+        return '终止'
+      case '12':
+        return '订单超区'
+      case '13':
+        return '下单失败'
+      default:
+        return ''
+    }
+  }
+
   return (
     <StyledOverView>
       <ScrollView scrollY={true} className={"scrollview"}>
@@ -101,7 +163,7 @@ const WayBillDatails = (props) => {
             <>
               <View className="main3">
                 <Text className="txt1">{item.senderName}</Text>
-                <Text className="word1">{item.logisticsInfo[0].opeTitle}</Text>
+                <Text className="word1">{orderStatus(item.orderStatus)}</Text>
                 <Text className="word2">{item.receiveName}</Text>
               </View>
               <View className="main4">
@@ -261,46 +323,49 @@ const WayBillDatails = (props) => {
 
                 <View className="group12">
                   <Text className="info13">预估费用</Text>
-                  <Text className="infoBox2">199.00元</Text>
+                  <Text className="infoBox2">{item?.preOrderFee || 0}元</Text>
                 </View>
                 <View className="group12">
                   <Text className="info13">保险费用</Text>
-                  <Text className="infoBox2">100.00元</Text>
+                  <Text className="infoBox2">{item?.bjFee || 0}元</Text>
                 </View>
                 <View className="group12">
                   <Text className="info13">包装费用</Text>
-                  <Text className="infoBox2">10.00元</Text>
+                  <Text className="infoBox2">{item?.costMaterialFee || 0}元</Text>
                 </View>
-                <View className="group12">
+                {/* <View className="group12">
                   <Text className="info13">费用合计&nbsp;</Text>
                   <Text className="infoBox2">309.00元</Text>
-                </View>
-                <View className="group12">
+                </View> */}
+                {/* <View className="group12">
                   <Text className="info13">支付方式</Text>
                   <Text className="infoBox2">寄付现结</Text>
-                </View>
+                </View> */}
                 <View className="group12">
                   <Text className="info13">时效类型</Text>
-                  <Text className="infoBox2">特快重货</Text>
+                  <Text className="infoBox2">{promiseTimeType(item.promiseTimeType)}</Text>
                 </View>
                 <View className="group12">
                   <Text className="info13">物品信息</Text>
-                  <Text className="infoBox2">服装/59KG/10m3/1件/轻拿 轻放</Text>
+                  <Text className="infoBox2">{`${item?.goods}/${item?.weight}KG/${item?.volume}m3/${item?.packageCount}件`}1</Text>
                 </View>
                 <View className="group12">
                   <Text className="info13">京东称重</Text>
-                  <Text className="infoBox2">服装/59KG/10m3/1件</Text>
+                  <Text className="infoBox2">{`${item?.goods}/${item?.weight}KG/${item?.volume}m3/${item?.packageCount}件`}</Text>
                 </View>
                 <View className="group12">
                   <Text className="info13">保价金额</Text>
-                  <Text className="infoBox2">000.00元</Text>
+                  <Text className="infoBox2">{item?.guaranteeValueAmount || 0}元</Text>
                 </View>
-                <View className="group12">
-                  <Text className="info13">增值服务</Text>
-                  <Text className="infoBox2">
-                    签单返还;代收货款，代收金 额:10000.00元
-                  </Text>
-                </View>
+                {
+                  item?.signReturn === 1 && <View className="group12">
+                    <Text className="info13">增值服务</Text>
+                    <Text className="infoBox2">
+                      签单返还;代收货款，代收金 额:{item?.collectionMoney || 0}元
+                    </Text>
+                  </View>
+                }
+
               </View>
             );
           })}

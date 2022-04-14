@@ -1,4 +1,4 @@
-import { Text, View, Image, ScrollView,Input } from "@tarojs/components";
+import { Text, View, Image, ScrollView, Input } from "@tarojs/components";
 import Taro, { useDidShow } from "@tarojs/taro";
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
@@ -85,6 +85,36 @@ const Index = (props) => {
     debounceAjax(e)
   }
 
+  const orderStatus = (type) => {
+    switch (type) {
+
+      case '1':
+        return '待取件'
+      case '2':
+        return '运输中'
+      case '3':
+        return '已签收'
+      case '4':
+        return '拒收退货'
+      case '5':
+        return '拦截'
+      case '6':
+        return '异常'
+      case '7':
+        return '异常已处理'
+      case '10':
+        return '已取消'
+      case '11':
+        return '终止'
+      case '12':
+        return '订单超区'
+      case '13':
+        return '下单失败'
+      default:
+        return ''
+    }
+  }
+
   return (
     <StyledOverview>
 
@@ -150,7 +180,7 @@ const Index = (props) => {
                 <View className="layer7"></View>
                 <View className="layer8">
                   <Text className="word5">{item.senderName}</Text>
-                  <Text className="txt1">{item.logisticsInfo[0].opeTitle}</Text>
+                  <Text className="txt1">{orderStatus(item.orderStatus)}</Text>
                   <Text className="info3">{item.receiveName}</Text>
                 </View>
                 <View className="layer9">
