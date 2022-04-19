@@ -51,7 +51,7 @@ const WayBill = (props) => {
       console.log(res.target)
     }
     return {
-      title: '滴答货运',
+      title: '让您的货运/物流订单像高德聚合打车一样便捷',
       path: 'pages/home/index'
     }
   })
