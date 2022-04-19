@@ -385,15 +385,23 @@ const WayBillDatails = (props) => {
               <Image src={Xiugai} className="icon3"></Image>
               <Text className="txt6">修改运单</Text>
             </View> */}
-            <View
-              className="bd9"
-              onClick={() => {
-                clear();
-              }}
-            >
-              <Image src={Quxiao} className="label3"></Image>
-              <Text className="word10">取消运单</Text>
-            </View>
+            {
+              list[0]?.orderStatus !== '10' ? <View
+                className="bd9"
+                onClick={() => {
+                  clear();
+                }}
+              >
+                <Image src={Quxiao} className="label3"></Image>
+                <Text className="word10">取消运单</Text>
+              </View> : <View
+                className="bd9"
+
+              >
+
+              </View>
+            }
+
             <Button bindtap="onClick" className="bd10">
               <Text className="info9">分享</Text>
             </Button>

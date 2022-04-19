@@ -1252,7 +1252,7 @@ export const StyledOverView = styled(View)`
     z-index: auto;
     width: 96rpx;
     height: 86rpx;
-    margin-left: 120rpx;
+    /* margin-left: 120rpx; */
     display: flex;
     flex-direction: column;
   }
