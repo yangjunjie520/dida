@@ -30,10 +30,10 @@ const model: Model & ModelType = {
     list: [],
   },
   effects: {
-    *orderList({}, { put, select }) {
+    *orderList({ }, { put, select }) {
       try {
         Taro.showLoading({
-          title: "加载中",
+          title: "加载中   ",
         });
         let freight = yield select((state) => state.freight);
         const res = yield OrderList(freight.params);
@@ -55,7 +55,7 @@ const model: Model & ModelType = {
         Taro.showModal({
           title: "错误",
           content: error,
-          success: function(res) {
+          success: function (res) {
             if (res.confirm) {
               console.log("用户点击确定");
             } else if (res.cancel) {
