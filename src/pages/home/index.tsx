@@ -6,6 +6,7 @@ import { AtToast } from "taro-ui";
 import { ConnectState } from "./model";
 import { StyledOverview } from "./style";
 import Navbar from "../../components/navbar";
+import { getGStateApi} from './api'
 
 import BG1 from "../../static/images/home/bg1.png";
 import BG2 from "../../static/images/home/bg2.png";
@@ -44,6 +45,22 @@ const WayBill = (props) => {
 
   const [kf, setKf] = useState(false)
   const [keImg, setKfImg] = useState(Erweima)
+  const [showView,setShowView] = useState(true)
+  useEffect(() => {
+    getGState()
+  }, []);
+
+  const getGState = async ()=>{
+    const user = Taro.getStorageSync("user");
+    const params = {
+          openid: user.openid,
+          userId: user.userId,
+        }
+    const res =  await getGStateApi(params)
+    if(res.code===200&&res.globalState==="1"){
+      setShowView(false)
+    }
+  }
 
   useShareAppMessage(res => {
     if (res.from === 'button') {
@@ -71,7 +88,11 @@ const WayBill = (props) => {
     });
   }
 
-  return (
+  return !showView ?(
+    <View>
+      <Image src={keImg} show-menu-by-longpress mode="aspectFit" className="img"></Image>
+    </View>
+  ) :(
     <StyledOverview>
       <ScrollView scrollY={true} className={"scrollview"}>
 

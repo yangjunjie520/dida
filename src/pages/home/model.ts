@@ -2,7 +2,6 @@ import { Reducer } from 'redux'
 import { Model } from 'dva'
 import { Loading } from '@/models/connect'
 import { THREE_WEEKS_AGO } from '@/utils/handleTime'
-import { } from './api'
 
 interface StateType {
   overview: Record<string, unknown>
@@ -37,7 +36,6 @@ const model: Model & ModelType = {
       },
       { type: 'watcher' },
     ],
-
     *getDefault({}, { put, select }) {
       let params = yield select(state => state.waybill.filterParams)
       params = {
